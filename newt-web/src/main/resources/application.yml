@@ -37,7 +37,10 @@ druid:
   loginUsername: zhangchaochao
   loginPassword: zhangchaochao
   resetEnable: false
-
+  #schema:
+  #  - classpath:sql/department.sql
+  #  - classpath:sql/employee.sql
+  #initialization-mode: always
 
 ---
 
@@ -80,3 +83,7 @@ druid:
   loginUsername: zhangchaochao
   loginPassword: zhangchaochao
   resetEnable: false
+    #schema:
+    #  - classpath:sql/department.sql
+    #  - classpath:sql/employee.sql
+    #initialization-mode: always

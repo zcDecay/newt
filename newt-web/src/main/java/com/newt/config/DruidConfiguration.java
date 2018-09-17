@@ -39,9 +39,11 @@ public class DruidConfiguration extends  StatViewServlet{
     private String resetEnable;
 
     /**
-     * @Description: 导入Druid数据源，绑定到spring.datasource中
-     * @param:  * @param
-     * @return: javax.sql.DataSource
+     * ConfigurationProperties
+     *      通过这个注解把配置文件中的(spring.datasource)数据源映射到该数据源中，不使用默认的数据源
+     * Bean
+     *      创建自定义Datsource,把springboot默认使用的datasource覆盖
+     * @return
      */
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource")
@@ -49,8 +51,8 @@ public class DruidConfiguration extends  StatViewServlet{
         return new DruidDataSource();
     }
     /**
-     * 配置Druid的监控
-     * 配置一个管理后台的Servlet
+     * 配置Druid监控，配置一个管理后台的Servlet
+     * 扩展参数可以在ResourceServlet中找到
      * @return
      */
     @Bean
@@ -75,7 +77,8 @@ public class DruidConfiguration extends  StatViewServlet{
     }
 
     /**
-     * 配置一个web监控的filter
+     * 配置一个wen监控的filter
+     * 扩展参数可以在WebStatFilter中找到
      * @return
      */
     @Bean
