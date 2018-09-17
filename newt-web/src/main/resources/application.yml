@@ -37,6 +37,8 @@ druid:
   loginUsername: zhangchaochao
   loginPassword: zhangchaochao
   resetEnable: false
+mybatis:
+  mapper-locations: **/com/newt/mapper/*.xml
   #schema:
   #  - classpath:sql/department.sql
   #  - classpath:sql/employee.sql
@@ -83,6 +85,8 @@ druid:
   loginUsername: zhangchaochao
   loginPassword: zhangchaochao
   resetEnable: false
+mybatis:
+  mapper-locations: **/com/newt/mapper/*.xml
     #schema:
     #  - classpath:sql/department.sql
     #  - classpath:sql/employee.sql
