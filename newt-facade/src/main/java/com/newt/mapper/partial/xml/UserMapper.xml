@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newt.mapper.partial.UserMapper">
+  <resultMap id="BaseResultMap" type="com.newt.pojo.partial.User">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="USER_ID" jdbcType="INTEGER" property="userId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="LOGIN_IP" jdbcType="TIMESTAMP" property="loginIp" />
+    <result column="LOGIN_NUM" jdbcType="INTEGER" property="loginNum" />
+    <result column="LOGIN_TIME" jdbcType="TIMESTAMP" property="loginTime" />
+    <result column="OLD_LOGIN_IP" jdbcType="TIMESTAMP" property="oldLoginIp" />
+    <result column="OLG_LOGIN_TIME" jdbcType="TIMESTAMP" property="olgLoginTime" />
+    <result column="PICK_NAME" jdbcType="VARCHAR" property="pickName" />
+    <result column="ROLE_ID" jdbcType="VARCHAR" property="roleId" />
+    <result column="SALT" jdbcType="VARCHAR" property="salt" />
+    <result column="SIGNATURE" jdbcType="VARCHAR" property="signature" />
+    <result column="STATE" jdbcType="INTEGER" property="state" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="USER_ICON" jdbcType="VARCHAR" property="userIcon" />
+    <result column="USER_PHONE" jdbcType="VARCHAR" property="userPhone" />
+    <result column="USER_PWD" jdbcType="VARCHAR" property="userPwd" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    USER_ID, CREATE_TIME, EMAIL, LOGIN_IP, LOGIN_NUM, LOGIN_TIME, OLD_LOGIN_IP, OLG_LOGIN_TIME, 
+    PICK_NAME, ROLE_ID, SALT, SIGNATURE, STATE, UPDATE_TIME, USER_ICON, USER_PHONE, USER_PWD
+  </sql>
+  <select id="selectByExample" parameterType="com.newt.pojo.partial.UserExample" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where USER_ID = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    delete from user
+    where USER_ID = #{userId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.newt.pojo.partial.UserExample">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    delete from user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.newt.pojo.partial.User">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <selectKey keyProperty="userId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into user (CREATE_TIME, EMAIL, LOGIN_IP, 
+      LOGIN_NUM, LOGIN_TIME, OLD_LOGIN_IP, 
+      OLG_LOGIN_TIME, PICK_NAME, ROLE_ID, 
+      SALT, SIGNATURE, STATE, 
+      UPDATE_TIME, USER_ICON, USER_PHONE, 
+      USER_PWD)
+    values (#{createTime,jdbcType=TIMESTAMP}, #{email,jdbcType=VARCHAR}, #{loginIp,jdbcType=TIMESTAMP}, 
+      #{loginNum,jdbcType=INTEGER}, #{loginTime,jdbcType=TIMESTAMP}, #{oldLoginIp,jdbcType=TIMESTAMP}, 
+      #{olgLoginTime,jdbcType=TIMESTAMP}, #{pickName,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, 
+      #{salt,jdbcType=VARCHAR}, #{signature,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{userIcon,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, 
+      #{userPwd,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.newt.pojo.partial.User">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <selectKey keyProperty="userId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="loginIp != null">
+        LOGIN_IP,
+      </if>
+      <if test="loginNum != null">
+        LOGIN_NUM,
+      </if>
+      <if test="loginTime != null">
+        LOGIN_TIME,
+      </if>
+      <if test="oldLoginIp != null">
+        OLD_LOGIN_IP,
+      </if>
+      <if test="olgLoginTime != null">
+        OLG_LOGIN_TIME,
+      </if>
+      <if test="pickName != null">
+        PICK_NAME,
+      </if>
+      <if test="roleId != null">
+        ROLE_ID,
+      </if>
+      <if test="salt != null">
+        SALT,
+      </if>
+      <if test="signature != null">
+        SIGNATURE,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="userIcon != null">
+        USER_ICON,
+      </if>
+      <if test="userPhone != null">
+        USER_PHONE,
+      </if>
+      <if test="userPwd != null">
+        USER_PWD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="loginIp != null">
+        #{loginIp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginNum != null">
+        #{loginNum,jdbcType=INTEGER},
+      </if>
+      <if test="loginTime != null">
+        #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oldLoginIp != null">
+        #{oldLoginIp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="olgLoginTime != null">
+        #{olgLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pickName != null">
+        #{pickName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null">
+        #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userIcon != null">
+        #{userIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null">
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null">
+        #{userPwd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.newt.pojo.partial.UserExample" resultType="java.lang.Long">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    select count(*) from user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    update user
+    <set>
+      <if test="record.userId != null">
+        USER_ID = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.email != null">
+        EMAIL = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loginIp != null">
+        LOGIN_IP = #{record.loginIp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.loginNum != null">
+        LOGIN_NUM = #{record.loginNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.loginTime != null">
+        LOGIN_TIME = #{record.loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.oldLoginIp != null">
+        OLD_LOGIN_IP = #{record.oldLoginIp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.olgLoginTime != null">
+        OLG_LOGIN_TIME = #{record.olgLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pickName != null">
+        PICK_NAME = #{record.pickName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roleId != null">
+        ROLE_ID = #{record.roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salt != null">
+        SALT = #{record.salt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signature != null">
+        SIGNATURE = #{record.signature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null">
+        STATE = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null">
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.userIcon != null">
+        USER_ICON = #{record.userIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userPhone != null">
+        USER_PHONE = #{record.userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userPwd != null">
+        USER_PWD = #{record.userPwd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    update user
+    set USER_ID = #{record.userId,jdbcType=INTEGER},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      EMAIL = #{record.email,jdbcType=VARCHAR},
+      LOGIN_IP = #{record.loginIp,jdbcType=TIMESTAMP},
+      LOGIN_NUM = #{record.loginNum,jdbcType=INTEGER},
+      LOGIN_TIME = #{record.loginTime,jdbcType=TIMESTAMP},
+      OLD_LOGIN_IP = #{record.oldLoginIp,jdbcType=TIMESTAMP},
+      OLG_LOGIN_TIME = #{record.olgLoginTime,jdbcType=TIMESTAMP},
+      PICK_NAME = #{record.pickName,jdbcType=VARCHAR},
+      ROLE_ID = #{record.roleId,jdbcType=VARCHAR},
+      SALT = #{record.salt,jdbcType=VARCHAR},
+      SIGNATURE = #{record.signature,jdbcType=VARCHAR},
+      STATE = #{record.state,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      USER_ICON = #{record.userIcon,jdbcType=VARCHAR},
+      USER_PHONE = #{record.userPhone,jdbcType=VARCHAR},
+      USER_PWD = #{record.userPwd,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.newt.pojo.partial.User">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    update user
+    <set>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="loginIp != null">
+        LOGIN_IP = #{loginIp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginNum != null">
+        LOGIN_NUM = #{loginNum,jdbcType=INTEGER},
+      </if>
+      <if test="loginTime != null">
+        LOGIN_TIME = #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oldLoginIp != null">
+        OLD_LOGIN_IP = #{oldLoginIp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="olgLoginTime != null">
+        OLG_LOGIN_TIME = #{olgLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pickName != null">
+        PICK_NAME = #{pickName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null">
+        ROLE_ID = #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        SALT = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null">
+        SIGNATURE = #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userIcon != null">
+        USER_ICON = #{userIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null">
+        USER_PHONE = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null">
+        USER_PWD = #{userPwd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where USER_ID = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.newt.pojo.partial.User">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    update user
+    set CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      LOGIN_IP = #{loginIp,jdbcType=TIMESTAMP},
+      LOGIN_NUM = #{loginNum,jdbcType=INTEGER},
+      LOGIN_TIME = #{loginTime,jdbcType=TIMESTAMP},
+      OLD_LOGIN_IP = #{oldLoginIp,jdbcType=TIMESTAMP},
+      OLG_LOGIN_TIME = #{olgLoginTime,jdbcType=TIMESTAMP},
+      PICK_NAME = #{pickName,jdbcType=VARCHAR},
+      ROLE_ID = #{roleId,jdbcType=VARCHAR},
+      SALT = #{salt,jdbcType=VARCHAR},
+      SIGNATURE = #{signature,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      USER_ICON = #{userIcon,jdbcType=VARCHAR},
+      USER_PHONE = #{userPhone,jdbcType=VARCHAR},
+      USER_PWD = #{userPwd,jdbcType=VARCHAR}
+    where USER_ID = #{userId,jdbcType=INTEGER}
+  </update>
+  <insert id="insertList" parameterType="java.util.List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <selectKey keyProperty="userId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into user (CREATE_TIME, EMAIL, 
+      LOGIN_IP, LOGIN_NUM, LOGIN_TIME, 
+      OLD_LOGIN_IP, OLG_LOGIN_TIME, 
+      PICK_NAME, ROLE_ID, SALT, 
+      SIGNATURE, STATE, UPDATE_TIME, 
+      USER_ICON, USER_PHONE, USER_PWD
+      )
+    <foreach collection="records" index="index" item="record" separator=";">
+    values (#{record.createTime,jdbcType=TIMESTAMP}, #{record.email,jdbcType=VARCHAR}, 
+      #{record.loginIp,jdbcType=TIMESTAMP}, #{record.loginNum,jdbcType=INTEGER}, #{record.loginTime,jdbcType=TIMESTAMP}, 
+      #{record.oldLoginIp,jdbcType=TIMESTAMP}, #{record.olgLoginTime,jdbcType=TIMESTAMP}, 
+      #{record.pickName,jdbcType=VARCHAR}, #{record.roleId,jdbcType=VARCHAR}, #{record.salt,jdbcType=VARCHAR}, 
+      #{record.signature,jdbcType=VARCHAR}, #{record.state,jdbcType=INTEGER}, #{record.updateTime,jdbcType=TIMESTAMP}, 
+      #{record.userIcon,jdbcType=VARCHAR}, #{record.userPhone,jdbcType=VARCHAR}, #{record.userPwd,jdbcType=VARCHAR}
+      )
+    </foreach>
+  </insert>
+  <insert id="insertSelectiveList" parameterType="java.util.List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <selectKey keyProperty="userId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="record.createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="record.email != null">
+        EMAIL,
+      </if>
+      <if test="record.loginIp != null">
+        LOGIN_IP,
+      </if>
+      <if test="record.loginNum != null">
+        LOGIN_NUM,
+      </if>
+      <if test="record.loginTime != null">
+        LOGIN_TIME,
+      </if>
+      <if test="record.oldLoginIp != null">
+        OLD_LOGIN_IP,
+      </if>
+      <if test="record.olgLoginTime != null">
+        OLG_LOGIN_TIME,
+      </if>
+      <if test="record.pickName != null">
+        PICK_NAME,
+      </if>
+      <if test="record.roleId != null">
+        ROLE_ID,
+      </if>
+      <if test="record.salt != null">
+        SALT,
+      </if>
+      <if test="record.signature != null">
+        SIGNATURE,
+      </if>
+      <if test="record.state != null">
+        STATE,
+      </if>
+      <if test="record.updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="record.userIcon != null">
+        USER_ICON,
+      </if>
+      <if test="record.userPhone != null">
+        USER_PHONE,
+      </if>
+      <if test="record.userPwd != null">
+        USER_PWD,
+      </if>
+    </trim>
+    <foreach collection="records" index="index" item="record" separator=";">
+      <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="record.createTime != null">
+          #{record.createTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="record.email != null">
+          #{record.email,jdbcType=VARCHAR},
+        </if>
+        <if test="record.loginIp != null">
+          #{record.loginIp,jdbcType=TIMESTAMP},
+        </if>
+        <if test="record.loginNum != null">
+          #{record.loginNum,jdbcType=INTEGER},
+        </if>
+        <if test="record.loginTime != null">
+          #{record.loginTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="record.oldLoginIp != null">
+          #{record.oldLoginIp,jdbcType=TIMESTAMP},
+        </if>
+        <if test="record.olgLoginTime != null">
+          #{record.olgLoginTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="record.pickName != null">
+          #{record.pickName,jdbcType=VARCHAR},
+        </if>
+        <if test="record.roleId != null">
+          #{record.roleId,jdbcType=VARCHAR},
+        </if>
+        <if test="record.salt != null">
+          #{record.salt,jdbcType=VARCHAR},
+        </if>
+        <if test="record.signature != null">
+          #{record.signature,jdbcType=VARCHAR},
+        </if>
+        <if test="record.state != null">
+          #{record.state,jdbcType=INTEGER},
+        </if>
+        <if test="record.updateTime != null">
+          #{record.updateTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="record.userIcon != null">
+          #{record.userIcon,jdbcType=VARCHAR},
+        </if>
+        <if test="record.userPhone != null">
+          #{record.userPhone,jdbcType=VARCHAR},
+        </if>
+        <if test="record.userPwd != null">
+          #{record.userPwd,jdbcType=VARCHAR},
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+</mapper>

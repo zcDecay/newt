@@ -1,0 +1,5 @@
+
+Cors跨域在在WebAppConfiguration的配置
+
+allowCredentials    ：设置cookie可以在浏览器和服务器之间传递
+allowedHeaders      ：可以添加cookie
