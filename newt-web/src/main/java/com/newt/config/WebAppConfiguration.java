@@ -3,15 +3,18 @@ package com.newt.config;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -19,6 +22,7 @@ import java.util.List;
  * @Author zcc
  * @Date 18/09/13
  */
+@Configuration
 public class WebAppConfiguration implements WebMvcConfigurer {
 
 
@@ -44,6 +48,15 @@ public class WebAppConfiguration implements WebMvcConfigurer {
      */
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        /*解决fastjson在不生效*/
+        Iterator<HttpMessageConverter<?>> iterator = converters.iterator();
+        while(iterator.hasNext()){
+            HttpMessageConverter<?> converter = iterator.next();
+            if(converter instanceof MappingJackson2HttpMessageConverter){
+                iterator.remove();
+            }
+        }
+
         /*创建FastJson消息转换器*/
         FastJsonHttpMessageConverter jsonHttpConverter = new FastJsonHttpMessageConverter();
         /*创建配置类*/

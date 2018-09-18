@@ -115,52 +115,62 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andUserIdEqualTo(Integer value) {
+        public Criteria andUserIdEqualTo(String value) {
             addCriterion("USER_ID =", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdNotEqualTo(Integer value) {
+        public Criteria andUserIdNotEqualTo(String value) {
             addCriterion("USER_ID <>", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdGreaterThan(Integer value) {
+        public Criteria andUserIdGreaterThan(String value) {
             addCriterion("USER_ID >", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andUserIdGreaterThanOrEqualTo(String value) {
             addCriterion("USER_ID >=", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdLessThan(Integer value) {
+        public Criteria andUserIdLessThan(String value) {
             addCriterion("USER_ID <", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdLessThanOrEqualTo(Integer value) {
+        public Criteria andUserIdLessThanOrEqualTo(String value) {
             addCriterion("USER_ID <=", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdIn(List<Integer> values) {
+        public Criteria andUserIdLike(String value) {
+            addCriterion("USER_ID like", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdNotLike(String value) {
+            addCriterion("USER_ID not like", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdIn(List<String> values) {
             addCriterion("USER_ID in", values, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdNotIn(List<Integer> values) {
+        public Criteria andUserIdNotIn(List<String> values) {
             addCriterion("USER_ID not in", values, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdBetween(Integer value1, Integer value2) {
+        public Criteria andUserIdBetween(String value1, String value2) {
             addCriterion("USER_ID between", value1, value2, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andUserIdNotBetween(String value1, String value2) {
             addCriterion("USER_ID not between", value1, value2, "userId");
             return (Criteria) this;
         }
@@ -305,52 +315,62 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andLoginIpEqualTo(Date value) {
+        public Criteria andLoginIpEqualTo(String value) {
             addCriterion("LOGIN_IP =", value, "loginIp");
             return (Criteria) this;
         }
 
-        public Criteria andLoginIpNotEqualTo(Date value) {
+        public Criteria andLoginIpNotEqualTo(String value) {
             addCriterion("LOGIN_IP <>", value, "loginIp");
             return (Criteria) this;
         }
 
-        public Criteria andLoginIpGreaterThan(Date value) {
+        public Criteria andLoginIpGreaterThan(String value) {
             addCriterion("LOGIN_IP >", value, "loginIp");
             return (Criteria) this;
         }
 
-        public Criteria andLoginIpGreaterThanOrEqualTo(Date value) {
+        public Criteria andLoginIpGreaterThanOrEqualTo(String value) {
             addCriterion("LOGIN_IP >=", value, "loginIp");
             return (Criteria) this;
         }
 
-        public Criteria andLoginIpLessThan(Date value) {
+        public Criteria andLoginIpLessThan(String value) {
             addCriterion("LOGIN_IP <", value, "loginIp");
             return (Criteria) this;
         }
 
-        public Criteria andLoginIpLessThanOrEqualTo(Date value) {
+        public Criteria andLoginIpLessThanOrEqualTo(String value) {
             addCriterion("LOGIN_IP <=", value, "loginIp");
             return (Criteria) this;
         }
 
-        public Criteria andLoginIpIn(List<Date> values) {
+        public Criteria andLoginIpLike(String value) {
+            addCriterion("LOGIN_IP like", value, "loginIp");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoginIpNotLike(String value) {
+            addCriterion("LOGIN_IP not like", value, "loginIp");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoginIpIn(List<String> values) {
             addCriterion("LOGIN_IP in", values, "loginIp");
             return (Criteria) this;
         }
 
-        public Criteria andLoginIpNotIn(List<Date> values) {
+        public Criteria andLoginIpNotIn(List<String> values) {
             addCriterion("LOGIN_IP not in", values, "loginIp");
             return (Criteria) this;
         }
 
-        public Criteria andLoginIpBetween(Date value1, Date value2) {
+        public Criteria andLoginIpBetween(String value1, String value2) {
             addCriterion("LOGIN_IP between", value1, value2, "loginIp");
             return (Criteria) this;
         }
 
-        public Criteria andLoginIpNotBetween(Date value1, Date value2) {
+        public Criteria andLoginIpNotBetween(String value1, String value2) {
             addCriterion("LOGIN_IP not between", value1, value2, "loginIp");
             return (Criteria) this;
         }
@@ -485,52 +505,62 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andOldLoginIpEqualTo(Date value) {
+        public Criteria andOldLoginIpEqualTo(String value) {
             addCriterion("OLD_LOGIN_IP =", value, "oldLoginIp");
             return (Criteria) this;
         }
 
-        public Criteria andOldLoginIpNotEqualTo(Date value) {
+        public Criteria andOldLoginIpNotEqualTo(String value) {
             addCriterion("OLD_LOGIN_IP <>", value, "oldLoginIp");
             return (Criteria) this;
         }
 
-        public Criteria andOldLoginIpGreaterThan(Date value) {
+        public Criteria andOldLoginIpGreaterThan(String value) {
             addCriterion("OLD_LOGIN_IP >", value, "oldLoginIp");
             return (Criteria) this;
         }
 
-        public Criteria andOldLoginIpGreaterThanOrEqualTo(Date value) {
+        public Criteria andOldLoginIpGreaterThanOrEqualTo(String value) {
             addCriterion("OLD_LOGIN_IP >=", value, "oldLoginIp");
             return (Criteria) this;
         }
 
-        public Criteria andOldLoginIpLessThan(Date value) {
+        public Criteria andOldLoginIpLessThan(String value) {
             addCriterion("OLD_LOGIN_IP <", value, "oldLoginIp");
             return (Criteria) this;
         }
 
-        public Criteria andOldLoginIpLessThanOrEqualTo(Date value) {
+        public Criteria andOldLoginIpLessThanOrEqualTo(String value) {
             addCriterion("OLD_LOGIN_IP <=", value, "oldLoginIp");
             return (Criteria) this;
         }
 
-        public Criteria andOldLoginIpIn(List<Date> values) {
+        public Criteria andOldLoginIpLike(String value) {
+            addCriterion("OLD_LOGIN_IP like", value, "oldLoginIp");
+            return (Criteria) this;
+        }
+
+        public Criteria andOldLoginIpNotLike(String value) {
+            addCriterion("OLD_LOGIN_IP not like", value, "oldLoginIp");
+            return (Criteria) this;
+        }
+
+        public Criteria andOldLoginIpIn(List<String> values) {
             addCriterion("OLD_LOGIN_IP in", values, "oldLoginIp");
             return (Criteria) this;
         }
 
-        public Criteria andOldLoginIpNotIn(List<Date> values) {
+        public Criteria andOldLoginIpNotIn(List<String> values) {
             addCriterion("OLD_LOGIN_IP not in", values, "oldLoginIp");
             return (Criteria) this;
         }
 
-        public Criteria andOldLoginIpBetween(Date value1, Date value2) {
+        public Criteria andOldLoginIpBetween(String value1, String value2) {
             addCriterion("OLD_LOGIN_IP between", value1, value2, "oldLoginIp");
             return (Criteria) this;
         }
 
-        public Criteria andOldLoginIpNotBetween(Date value1, Date value2) {
+        public Criteria andOldLoginIpNotBetween(String value1, String value2) {
             addCriterion("OLD_LOGIN_IP not between", value1, value2, "oldLoginIp");
             return (Criteria) this;
         }
@@ -1210,8 +1240,23 @@ public class UserExample {
             return (Criteria) this;
         }
 
+        public Criteria andUserIdLikeInsensitive(String value) {
+            addCriterion("upper(USER_ID) like", value.toUpperCase(), "userId");
+            return (Criteria) this;
+        }
+
         public Criteria andEmailLikeInsensitive(String value) {
             addCriterion("upper(EMAIL) like", value.toUpperCase(), "email");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoginIpLikeInsensitive(String value) {
+            addCriterion("upper(LOGIN_IP) like", value.toUpperCase(), "loginIp");
+            return (Criteria) this;
+        }
+
+        public Criteria andOldLoginIpLikeInsensitive(String value) {
+            addCriterion("upper(OLD_LOGIN_IP) like", value.toUpperCase(), "oldLoginIp");
             return (Criteria) this;
         }
 

@@ -23,8 +23,13 @@
             <!--&lt;!&ndash;是否强制生成注解，默认 false，如果设置为 true，不管数据库名和字段名是否一致，都会生成注解（包含 @Table 和 @Column）。 &ndash;&gt;-->
             <!--<property name="forceAnnotation" value="true"/>-->
         <!--</plugin>-->
+        <!--自定义插件生成example接口-->
         <plugin type="com.newt.plugin.BaseMapperGeneratorPlugin">
             <property name="mappers" value="com.newt.utils.mapper.BaseMapper"/>
+        </plugin>
+        <!--lombok自定义生成插件-->
+        <plugin type="com.newt.plugin.LombokPlugin" >
+            <!--<property name="hasLombok" value="true"/>-->
         </plugin>
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
         <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" />

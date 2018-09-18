@@ -5,13 +5,13 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="USER_ID" jdbcType="INTEGER" property="userId" />
+    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="EMAIL" jdbcType="VARCHAR" property="email" />
-    <result column="LOGIN_IP" jdbcType="TIMESTAMP" property="loginIp" />
+    <result column="LOGIN_IP" jdbcType="VARCHAR" property="loginIp" />
     <result column="LOGIN_NUM" jdbcType="INTEGER" property="loginNum" />
     <result column="LOGIN_TIME" jdbcType="TIMESTAMP" property="loginTime" />
-    <result column="OLD_LOGIN_IP" jdbcType="TIMESTAMP" property="oldLoginIp" />
+    <result column="OLD_LOGIN_IP" jdbcType="VARCHAR" property="oldLoginIp" />
     <result column="OLG_LOGIN_TIME" jdbcType="TIMESTAMP" property="olgLoginTime" />
     <result column="PICK_NAME" jdbcType="VARCHAR" property="pickName" />
     <result column="ROLE_ID" jdbcType="VARCHAR" property="roleId" />
@@ -112,22 +112,6 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    select 
-    <include refid="Base_Column_List" />
-    from user
-    where USER_ID = #{userId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    delete from user
-    where USER_ID = #{userId,jdbcType=INTEGER}
-  </delete>
   <delete id="deleteByExample" parameterType="com.newt.pojo.partial.UserExample">
     <!--
       WARNING - @mbg.generated
@@ -141,7 +125,7 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <selectKey keyProperty="userId" order="AFTER" resultType="java.lang.Integer">
+    <selectKey keyProperty="userId" order="AFTER" resultType="java.lang.String">
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into user (CREATE_TIME, EMAIL, LOGIN_IP, 
@@ -150,8 +134,8 @@
       SALT, SIGNATURE, STATE, 
       UPDATE_TIME, USER_ICON, USER_PHONE, 
       USER_PWD)
-    values (#{createTime,jdbcType=TIMESTAMP}, #{email,jdbcType=VARCHAR}, #{loginIp,jdbcType=TIMESTAMP}, 
-      #{loginNum,jdbcType=INTEGER}, #{loginTime,jdbcType=TIMESTAMP}, #{oldLoginIp,jdbcType=TIMESTAMP}, 
+    values (#{createTime,jdbcType=TIMESTAMP}, #{email,jdbcType=VARCHAR}, #{loginIp,jdbcType=VARCHAR}, 
+      #{loginNum,jdbcType=INTEGER}, #{loginTime,jdbcType=TIMESTAMP}, #{oldLoginIp,jdbcType=VARCHAR}, 
       #{olgLoginTime,jdbcType=TIMESTAMP}, #{pickName,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, 
       #{salt,jdbcType=VARCHAR}, #{signature,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{userIcon,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, 
@@ -161,7 +145,7 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <selectKey keyProperty="userId" order="AFTER" resultType="java.lang.Integer">
+    <selectKey keyProperty="userId" order="AFTER" resultType="java.lang.String">
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into user
@@ -223,7 +207,7 @@
         #{email,jdbcType=VARCHAR},
       </if>
       <if test="loginIp != null">
-        #{loginIp,jdbcType=TIMESTAMP},
+        #{loginIp,jdbcType=VARCHAR},
       </if>
       <if test="loginNum != null">
         #{loginNum,jdbcType=INTEGER},
@@ -232,7 +216,7 @@
         #{loginTime,jdbcType=TIMESTAMP},
       </if>
       <if test="oldLoginIp != null">
-        #{oldLoginIp,jdbcType=TIMESTAMP},
+        #{oldLoginIp,jdbcType=VARCHAR},
       </if>
       <if test="olgLoginTime != null">
         #{olgLoginTime,jdbcType=TIMESTAMP},
@@ -282,7 +266,7 @@
     update user
     <set>
       <if test="record.userId != null">
-        USER_ID = #{record.userId,jdbcType=INTEGER},
+        USER_ID = #{record.userId,jdbcType=VARCHAR},
       </if>
       <if test="record.createTime != null">
         CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
@@ -291,7 +275,7 @@
         EMAIL = #{record.email,jdbcType=VARCHAR},
       </if>
       <if test="record.loginIp != null">
-        LOGIN_IP = #{record.loginIp,jdbcType=TIMESTAMP},
+        LOGIN_IP = #{record.loginIp,jdbcType=VARCHAR},
       </if>
       <if test="record.loginNum != null">
         LOGIN_NUM = #{record.loginNum,jdbcType=INTEGER},
@@ -300,7 +284,7 @@
         LOGIN_TIME = #{record.loginTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.oldLoginIp != null">
-        OLD_LOGIN_IP = #{record.oldLoginIp,jdbcType=TIMESTAMP},
+        OLD_LOGIN_IP = #{record.oldLoginIp,jdbcType=VARCHAR},
       </if>
       <if test="record.olgLoginTime != null">
         OLG_LOGIN_TIME = #{record.olgLoginTime,jdbcType=TIMESTAMP},
@@ -342,13 +326,13 @@
       WARNING - @mbg.generated
     -->
     update user
-    set USER_ID = #{record.userId,jdbcType=INTEGER},
+    set USER_ID = #{record.userId,jdbcType=VARCHAR},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       EMAIL = #{record.email,jdbcType=VARCHAR},
-      LOGIN_IP = #{record.loginIp,jdbcType=TIMESTAMP},
+      LOGIN_IP = #{record.loginIp,jdbcType=VARCHAR},
       LOGIN_NUM = #{record.loginNum,jdbcType=INTEGER},
       LOGIN_TIME = #{record.loginTime,jdbcType=TIMESTAMP},
-      OLD_LOGIN_IP = #{record.oldLoginIp,jdbcType=TIMESTAMP},
+      OLD_LOGIN_IP = #{record.oldLoginIp,jdbcType=VARCHAR},
       OLG_LOGIN_TIME = #{record.olgLoginTime,jdbcType=TIMESTAMP},
       PICK_NAME = #{record.pickName,jdbcType=VARCHAR},
       ROLE_ID = #{record.roleId,jdbcType=VARCHAR},
@@ -363,91 +347,11 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.newt.pojo.partial.User">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    update user
-    <set>
-      <if test="createTime != null">
-        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="email != null">
-        EMAIL = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="loginIp != null">
-        LOGIN_IP = #{loginIp,jdbcType=TIMESTAMP},
-      </if>
-      <if test="loginNum != null">
-        LOGIN_NUM = #{loginNum,jdbcType=INTEGER},
-      </if>
-      <if test="loginTime != null">
-        LOGIN_TIME = #{loginTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="oldLoginIp != null">
-        OLD_LOGIN_IP = #{oldLoginIp,jdbcType=TIMESTAMP},
-      </if>
-      <if test="olgLoginTime != null">
-        OLG_LOGIN_TIME = #{olgLoginTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="pickName != null">
-        PICK_NAME = #{pickName,jdbcType=VARCHAR},
-      </if>
-      <if test="roleId != null">
-        ROLE_ID = #{roleId,jdbcType=VARCHAR},
-      </if>
-      <if test="salt != null">
-        SALT = #{salt,jdbcType=VARCHAR},
-      </if>
-      <if test="signature != null">
-        SIGNATURE = #{signature,jdbcType=VARCHAR},
-      </if>
-      <if test="state != null">
-        STATE = #{state,jdbcType=INTEGER},
-      </if>
-      <if test="updateTime != null">
-        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="userIcon != null">
-        USER_ICON = #{userIcon,jdbcType=VARCHAR},
-      </if>
-      <if test="userPhone != null">
-        USER_PHONE = #{userPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="userPwd != null">
-        USER_PWD = #{userPwd,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where USER_ID = #{userId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.newt.pojo.partial.User">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    update user
-    set CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
-      EMAIL = #{email,jdbcType=VARCHAR},
-      LOGIN_IP = #{loginIp,jdbcType=TIMESTAMP},
-      LOGIN_NUM = #{loginNum,jdbcType=INTEGER},
-      LOGIN_TIME = #{loginTime,jdbcType=TIMESTAMP},
-      OLD_LOGIN_IP = #{oldLoginIp,jdbcType=TIMESTAMP},
-      OLG_LOGIN_TIME = #{olgLoginTime,jdbcType=TIMESTAMP},
-      PICK_NAME = #{pickName,jdbcType=VARCHAR},
-      ROLE_ID = #{roleId,jdbcType=VARCHAR},
-      SALT = #{salt,jdbcType=VARCHAR},
-      SIGNATURE = #{signature,jdbcType=VARCHAR},
-      STATE = #{state,jdbcType=INTEGER},
-      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
-      USER_ICON = #{userIcon,jdbcType=VARCHAR},
-      USER_PHONE = #{userPhone,jdbcType=VARCHAR},
-      USER_PWD = #{userPwd,jdbcType=VARCHAR}
-    where USER_ID = #{userId,jdbcType=INTEGER}
-  </update>
   <insert id="insertList" parameterType="java.util.List">
     <!--
       WARNING - @mbg.generated
     -->
-    <selectKey keyProperty="userId" order="AFTER" resultType="java.lang.Integer">
+    <selectKey keyProperty="userId" order="AFTER" resultType="java.lang.String">
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into user (CREATE_TIME, EMAIL, 
@@ -459,8 +363,8 @@
       )
     <foreach collection="records" index="index" item="record" separator=";">
     values (#{record.createTime,jdbcType=TIMESTAMP}, #{record.email,jdbcType=VARCHAR}, 
-      #{record.loginIp,jdbcType=TIMESTAMP}, #{record.loginNum,jdbcType=INTEGER}, #{record.loginTime,jdbcType=TIMESTAMP}, 
-      #{record.oldLoginIp,jdbcType=TIMESTAMP}, #{record.olgLoginTime,jdbcType=TIMESTAMP}, 
+      #{record.loginIp,jdbcType=VARCHAR}, #{record.loginNum,jdbcType=INTEGER}, #{record.loginTime,jdbcType=TIMESTAMP}, 
+      #{record.oldLoginIp,jdbcType=VARCHAR}, #{record.olgLoginTime,jdbcType=TIMESTAMP}, 
       #{record.pickName,jdbcType=VARCHAR}, #{record.roleId,jdbcType=VARCHAR}, #{record.salt,jdbcType=VARCHAR}, 
       #{record.signature,jdbcType=VARCHAR}, #{record.state,jdbcType=INTEGER}, #{record.updateTime,jdbcType=TIMESTAMP}, 
       #{record.userIcon,jdbcType=VARCHAR}, #{record.userPhone,jdbcType=VARCHAR}, #{record.userPwd,jdbcType=VARCHAR}
@@ -471,7 +375,7 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <selectKey keyProperty="userId" order="AFTER" resultType="java.lang.Integer">
+    <selectKey keyProperty="userId" order="AFTER" resultType="java.lang.String">
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into user
@@ -534,7 +438,7 @@
           #{record.email,jdbcType=VARCHAR},
         </if>
         <if test="record.loginIp != null">
-          #{record.loginIp,jdbcType=TIMESTAMP},
+          #{record.loginIp,jdbcType=VARCHAR},
         </if>
         <if test="record.loginNum != null">
           #{record.loginNum,jdbcType=INTEGER},
@@ -543,7 +447,7 @@
           #{record.loginTime,jdbcType=TIMESTAMP},
         </if>
         <if test="record.oldLoginIp != null">
-          #{record.oldLoginIp,jdbcType=TIMESTAMP},
+          #{record.oldLoginIp,jdbcType=VARCHAR},
         </if>
         <if test="record.olgLoginTime != null">
           #{record.olgLoginTime,jdbcType=TIMESTAMP},

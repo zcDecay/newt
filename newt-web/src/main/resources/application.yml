@@ -38,7 +38,7 @@ druid:
   loginPassword: zhangchaochao
   resetEnable: false
 mybatis:
-  mapper-locations: **/com/newt/mapper/*.xml
+  mapper-locations: classpath:com/newt/mapper/*.xml
   #schema:
   #  - classpath:sql/department.sql
   #  - classpath:sql/employee.sql
@@ -80,13 +80,13 @@ spring:
     testOnBorrow: false
     testOnReturn: false
 druid:
-  allow: 127.0.0.1
+  allow: 127.0.0.11
   deny: xxx
   loginUsername: zhangchaochao
   loginPassword: zhangchaochao
   resetEnable: false
 mybatis:
-  mapper-locations: **/com/newt/mapper/*.xml
+  mapper-locations: classpath:com/newt/mapper/**/*.xml
     #schema:
     #  - classpath:sql/department.sql
     #  - classpath:sql/employee.sql
