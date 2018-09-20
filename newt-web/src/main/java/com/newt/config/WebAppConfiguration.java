@@ -48,7 +48,7 @@ public class WebAppConfiguration implements WebMvcConfigurer {
      */
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        /*解决fastjson在不生效*/
+        /*解决*/
         Iterator<HttpMessageConverter<?>> iterator = converters.iterator();
         while(iterator.hasNext()){
             HttpMessageConverter<?> converter = iterator.next();
@@ -97,6 +97,6 @@ public class WebAppConfiguration implements WebMvcConfigurer {
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX + "/static/");
+//        registry.addResourceHandler("/static/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX + "/static/");
     }
 }

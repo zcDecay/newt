@@ -7,6 +7,9 @@ import com.newt.utils.AppContextUtil;
 import com.newt.utils.IDUtil;
 import com.newt.utils.IpUtil;
 import com.sun.org.apache.bcel.internal.generic.NEW;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,11 +29,14 @@ import java.util.List;
  */
 @Slf4j
 @RestController
+@Api(value = "swagger2测试")
 public class UserController {
     @Autowired
     UserMapper userMapper;
 
     @GetMapping("/user")
+    @ApiImplicitParam(paramType = "query",name= "username" ,value = "用户名",dataType = "string")
+    @ApiOperation(value = "获取用户列表，目前没有分页", notes="返回全部用户")
     public List<User> getUser (){
 
         UserExample example = new UserExample();
