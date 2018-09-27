@@ -62,6 +62,9 @@
         <!--swagger2-->
         <swagger2.version>2.6.1</swagger2.version>
         <swagger2.ui.version>2.6.1</swagger2.ui.version>
+
+        <!--freemarker-->
+        <freemarker.stater.version>2.0.4.RELEASE</freemarker.stater.version>
     </properties>
 
 
@@ -250,6 +253,11 @@
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
                 <version>${swagger2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-freemarker</artifactId>
+                <version>${freemarker.stater.version}</version>
             </dependency>
 
         </dependencies>

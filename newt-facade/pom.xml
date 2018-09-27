@@ -16,10 +16,6 @@
 
         <dependency>
             <groupId>com.newt</groupId>
-            <artifactId>newt-common</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.newt</groupId>
             <artifactId>newt-service</artifactId>
         </dependency>
         <dependency>
@@ -28,6 +24,14 @@
             <version>7.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.newt</groupId>
+            <artifactId>newt-common</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

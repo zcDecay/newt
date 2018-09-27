@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
-* Created by Mybatis Generator on 2018/09/18
+* Created by Mybatis Generator on 2018/09/27
 */
 @Data
 @Builder
@@ -75,7 +75,7 @@ public class User implements Serializable {
      * 角色ID
      */
     @Column(name = "ROLE_ID")
-    private String roleId;
+    private Integer roleId;
 
     /**
      * 盐值
@@ -106,6 +106,12 @@ public class User implements Serializable {
      */
     @Column(name = "USER_ICON")
     private String userIcon;
+
+    /**
+     * favicon.ico
+     */
+    @Column(name = "FAVICON")
+    private String favicon;
 
     /**
      * 用户手机号

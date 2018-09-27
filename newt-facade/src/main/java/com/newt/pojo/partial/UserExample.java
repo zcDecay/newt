@@ -705,62 +705,52 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andRoleIdEqualTo(String value) {
+        public Criteria andRoleIdEqualTo(Integer value) {
             addCriterion("ROLE_ID =", value, "roleId");
             return (Criteria) this;
         }
 
-        public Criteria andRoleIdNotEqualTo(String value) {
+        public Criteria andRoleIdNotEqualTo(Integer value) {
             addCriterion("ROLE_ID <>", value, "roleId");
             return (Criteria) this;
         }
 
-        public Criteria andRoleIdGreaterThan(String value) {
+        public Criteria andRoleIdGreaterThan(Integer value) {
             addCriterion("ROLE_ID >", value, "roleId");
             return (Criteria) this;
         }
 
-        public Criteria andRoleIdGreaterThanOrEqualTo(String value) {
+        public Criteria andRoleIdGreaterThanOrEqualTo(Integer value) {
             addCriterion("ROLE_ID >=", value, "roleId");
             return (Criteria) this;
         }
 
-        public Criteria andRoleIdLessThan(String value) {
+        public Criteria andRoleIdLessThan(Integer value) {
             addCriterion("ROLE_ID <", value, "roleId");
             return (Criteria) this;
         }
 
-        public Criteria andRoleIdLessThanOrEqualTo(String value) {
+        public Criteria andRoleIdLessThanOrEqualTo(Integer value) {
             addCriterion("ROLE_ID <=", value, "roleId");
             return (Criteria) this;
         }
 
-        public Criteria andRoleIdLike(String value) {
-            addCriterion("ROLE_ID like", value, "roleId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoleIdNotLike(String value) {
-            addCriterion("ROLE_ID not like", value, "roleId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoleIdIn(List<String> values) {
+        public Criteria andRoleIdIn(List<Integer> values) {
             addCriterion("ROLE_ID in", values, "roleId");
             return (Criteria) this;
         }
 
-        public Criteria andRoleIdNotIn(List<String> values) {
+        public Criteria andRoleIdNotIn(List<Integer> values) {
             addCriterion("ROLE_ID not in", values, "roleId");
             return (Criteria) this;
         }
 
-        public Criteria andRoleIdBetween(String value1, String value2) {
+        public Criteria andRoleIdBetween(Integer value1, Integer value2) {
             addCriterion("ROLE_ID between", value1, value2, "roleId");
             return (Criteria) this;
         }
 
-        public Criteria andRoleIdNotBetween(String value1, String value2) {
+        public Criteria andRoleIdNotBetween(Integer value1, Integer value2) {
             addCriterion("ROLE_ID not between", value1, value2, "roleId");
             return (Criteria) this;
         }
@@ -1095,6 +1085,76 @@ public class UserExample {
             return (Criteria) this;
         }
 
+        public Criteria andFaviconIsNull() {
+            addCriterion("FAVICON is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaviconIsNotNull() {
+            addCriterion("FAVICON is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaviconEqualTo(String value) {
+            addCriterion("FAVICON =", value, "favicon");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaviconNotEqualTo(String value) {
+            addCriterion("FAVICON <>", value, "favicon");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaviconGreaterThan(String value) {
+            addCriterion("FAVICON >", value, "favicon");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaviconGreaterThanOrEqualTo(String value) {
+            addCriterion("FAVICON >=", value, "favicon");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaviconLessThan(String value) {
+            addCriterion("FAVICON <", value, "favicon");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaviconLessThanOrEqualTo(String value) {
+            addCriterion("FAVICON <=", value, "favicon");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaviconLike(String value) {
+            addCriterion("FAVICON like", value, "favicon");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaviconNotLike(String value) {
+            addCriterion("FAVICON not like", value, "favicon");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaviconIn(List<String> values) {
+            addCriterion("FAVICON in", values, "favicon");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaviconNotIn(List<String> values) {
+            addCriterion("FAVICON not in", values, "favicon");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaviconBetween(String value1, String value2) {
+            addCriterion("FAVICON between", value1, value2, "favicon");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaviconNotBetween(String value1, String value2) {
+            addCriterion("FAVICON not between", value1, value2, "favicon");
+            return (Criteria) this;
+        }
+
         public Criteria andUserPhoneIsNull() {
             addCriterion("USER_PHONE is null");
             return (Criteria) this;
@@ -1265,11 +1325,6 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andRoleIdLikeInsensitive(String value) {
-            addCriterion("upper(ROLE_ID) like", value.toUpperCase(), "roleId");
-            return (Criteria) this;
-        }
-
         public Criteria andSaltLikeInsensitive(String value) {
             addCriterion("upper(SALT) like", value.toUpperCase(), "salt");
             return (Criteria) this;
@@ -1282,6 +1337,11 @@ public class UserExample {
 
         public Criteria andUserIconLikeInsensitive(String value) {
             addCriterion("upper(USER_ICON) like", value.toUpperCase(), "userIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaviconLikeInsensitive(String value) {
+            addCriterion("upper(FAVICON) like", value.toUpperCase(), "favicon");
             return (Criteria) this;
         }
 

@@ -14,12 +14,13 @@
     <result column="OLD_LOGIN_IP" jdbcType="VARCHAR" property="oldLoginIp" />
     <result column="OLG_LOGIN_TIME" jdbcType="TIMESTAMP" property="olgLoginTime" />
     <result column="PICK_NAME" jdbcType="VARCHAR" property="pickName" />
-    <result column="ROLE_ID" jdbcType="VARCHAR" property="roleId" />
+    <result column="ROLE_ID" jdbcType="INTEGER" property="roleId" />
     <result column="SALT" jdbcType="VARCHAR" property="salt" />
     <result column="SIGNATURE" jdbcType="VARCHAR" property="signature" />
     <result column="STATE" jdbcType="INTEGER" property="state" />
     <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="USER_ICON" jdbcType="VARCHAR" property="userIcon" />
+    <result column="FAVICON" jdbcType="VARCHAR" property="favicon" />
     <result column="USER_PHONE" jdbcType="VARCHAR" property="userPhone" />
     <result column="USER_PWD" jdbcType="VARCHAR" property="userPwd" />
   </resultMap>
@@ -92,7 +93,8 @@
       WARNING - @mbg.generated
     -->
     USER_ID, CREATE_TIME, EMAIL, LOGIN_IP, LOGIN_NUM, LOGIN_TIME, OLD_LOGIN_IP, OLG_LOGIN_TIME, 
-    PICK_NAME, ROLE_ID, SALT, SIGNATURE, STATE, UPDATE_TIME, USER_ICON, USER_PHONE, USER_PWD
+    PICK_NAME, ROLE_ID, SALT, SIGNATURE, STATE, UPDATE_TIME, USER_ICON, FAVICON, USER_PHONE, 
+    USER_PWD
   </sql>
   <select id="selectByExample" parameterType="com.newt.pojo.partial.UserExample" resultMap="BaseResultMap">
     <!--
@@ -132,14 +134,14 @@
       LOGIN_NUM, LOGIN_TIME, OLD_LOGIN_IP, 
       OLG_LOGIN_TIME, PICK_NAME, ROLE_ID, 
       SALT, SIGNATURE, STATE, 
-      UPDATE_TIME, USER_ICON, USER_PHONE, 
-      USER_PWD)
+      UPDATE_TIME, USER_ICON, FAVICON, 
+      USER_PHONE, USER_PWD)
     values (#{createTime,jdbcType=TIMESTAMP}, #{email,jdbcType=VARCHAR}, #{loginIp,jdbcType=VARCHAR}, 
       #{loginNum,jdbcType=INTEGER}, #{loginTime,jdbcType=TIMESTAMP}, #{oldLoginIp,jdbcType=VARCHAR}, 
-      #{olgLoginTime,jdbcType=TIMESTAMP}, #{pickName,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, 
+      #{olgLoginTime,jdbcType=TIMESTAMP}, #{pickName,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER}, 
       #{salt,jdbcType=VARCHAR}, #{signature,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{userIcon,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, 
-      #{userPwd,jdbcType=VARCHAR})
+      #{updateTime,jdbcType=TIMESTAMP}, #{userIcon,jdbcType=VARCHAR}, #{favicon,jdbcType=VARCHAR}, 
+      #{userPhone,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.newt.pojo.partial.User">
     <!--
@@ -192,6 +194,9 @@
       <if test="userIcon != null">
         USER_ICON,
       </if>
+      <if test="favicon != null">
+        FAVICON,
+      </if>
       <if test="userPhone != null">
         USER_PHONE,
       </if>
@@ -225,7 +230,7 @@
         #{pickName,jdbcType=VARCHAR},
       </if>
       <if test="roleId != null">
-        #{roleId,jdbcType=VARCHAR},
+        #{roleId,jdbcType=INTEGER},
       </if>
       <if test="salt != null">
         #{salt,jdbcType=VARCHAR},
@@ -241,6 +246,9 @@
       </if>
       <if test="userIcon != null">
         #{userIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="favicon != null">
+        #{favicon,jdbcType=VARCHAR},
       </if>
       <if test="userPhone != null">
         #{userPhone,jdbcType=VARCHAR},
@@ -293,7 +301,7 @@
         PICK_NAME = #{record.pickName,jdbcType=VARCHAR},
       </if>
       <if test="record.roleId != null">
-        ROLE_ID = #{record.roleId,jdbcType=VARCHAR},
+        ROLE_ID = #{record.roleId,jdbcType=INTEGER},
       </if>
       <if test="record.salt != null">
         SALT = #{record.salt,jdbcType=VARCHAR},
@@ -309,6 +317,9 @@
       </if>
       <if test="record.userIcon != null">
         USER_ICON = #{record.userIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.favicon != null">
+        FAVICON = #{record.favicon,jdbcType=VARCHAR},
       </if>
       <if test="record.userPhone != null">
         USER_PHONE = #{record.userPhone,jdbcType=VARCHAR},
@@ -335,12 +346,13 @@
       OLD_LOGIN_IP = #{record.oldLoginIp,jdbcType=VARCHAR},
       OLG_LOGIN_TIME = #{record.olgLoginTime,jdbcType=TIMESTAMP},
       PICK_NAME = #{record.pickName,jdbcType=VARCHAR},
-      ROLE_ID = #{record.roleId,jdbcType=VARCHAR},
+      ROLE_ID = #{record.roleId,jdbcType=INTEGER},
       SALT = #{record.salt,jdbcType=VARCHAR},
       SIGNATURE = #{record.signature,jdbcType=VARCHAR},
       STATE = #{record.state,jdbcType=INTEGER},
       UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
       USER_ICON = #{record.userIcon,jdbcType=VARCHAR},
+      FAVICON = #{record.favicon,jdbcType=VARCHAR},
       USER_PHONE = #{record.userPhone,jdbcType=VARCHAR},
       USER_PWD = #{record.userPwd,jdbcType=VARCHAR}
     <if test="_parameter != null">
@@ -359,16 +371,16 @@
       OLD_LOGIN_IP, OLG_LOGIN_TIME, 
       PICK_NAME, ROLE_ID, SALT, 
       SIGNATURE, STATE, UPDATE_TIME, 
-      USER_ICON, USER_PHONE, USER_PWD
-      )
+      USER_ICON, FAVICON, USER_PHONE, 
+      USER_PWD)
     <foreach collection="records" index="index" item="record" separator=";">
     values (#{record.createTime,jdbcType=TIMESTAMP}, #{record.email,jdbcType=VARCHAR}, 
       #{record.loginIp,jdbcType=VARCHAR}, #{record.loginNum,jdbcType=INTEGER}, #{record.loginTime,jdbcType=TIMESTAMP}, 
       #{record.oldLoginIp,jdbcType=VARCHAR}, #{record.olgLoginTime,jdbcType=TIMESTAMP}, 
-      #{record.pickName,jdbcType=VARCHAR}, #{record.roleId,jdbcType=VARCHAR}, #{record.salt,jdbcType=VARCHAR}, 
+      #{record.pickName,jdbcType=VARCHAR}, #{record.roleId,jdbcType=INTEGER}, #{record.salt,jdbcType=VARCHAR}, 
       #{record.signature,jdbcType=VARCHAR}, #{record.state,jdbcType=INTEGER}, #{record.updateTime,jdbcType=TIMESTAMP}, 
-      #{record.userIcon,jdbcType=VARCHAR}, #{record.userPhone,jdbcType=VARCHAR}, #{record.userPwd,jdbcType=VARCHAR}
-      )
+      #{record.userIcon,jdbcType=VARCHAR}, #{record.favicon,jdbcType=VARCHAR}, #{record.userPhone,jdbcType=VARCHAR}, 
+      #{record.userPwd,jdbcType=VARCHAR})
     </foreach>
   </insert>
   <insert id="insertSelectiveList" parameterType="java.util.List">
@@ -422,6 +434,9 @@
       <if test="record.userIcon != null">
         USER_ICON,
       </if>
+      <if test="record.favicon != null">
+        FAVICON,
+      </if>
       <if test="record.userPhone != null">
         USER_PHONE,
       </if>
@@ -456,7 +471,7 @@
           #{record.pickName,jdbcType=VARCHAR},
         </if>
         <if test="record.roleId != null">
-          #{record.roleId,jdbcType=VARCHAR},
+          #{record.roleId,jdbcType=INTEGER},
         </if>
         <if test="record.salt != null">
           #{record.salt,jdbcType=VARCHAR},
@@ -472,6 +487,9 @@
         </if>
         <if test="record.userIcon != null">
           #{record.userIcon,jdbcType=VARCHAR},
+        </if>
+        <if test="record.favicon != null">
+          #{record.favicon,jdbcType=VARCHAR},
         </if>
         <if test="record.userPhone != null">
           #{record.userPhone,jdbcType=VARCHAR},
