@@ -1,5 +1,6 @@
 package com.newt.utils;
 
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -76,5 +77,9 @@ public class DateTimeUtil {
         } catch (Exception e) {
         }
         return dateStr;
+    }
+
+    public  static Date getTimeStamp(){
+        return  new Timestamp(System.currentTimeMillis());
     }
 }

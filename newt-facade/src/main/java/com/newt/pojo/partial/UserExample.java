@@ -105,73 +105,63 @@ public class UserExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andUserIdIsNull() {
-            addCriterion("USER_ID is null");
+        public Criteria andIdIsNull() {
+            addCriterion("ID is null");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdIsNotNull() {
-            addCriterion("USER_ID is not null");
+        public Criteria andIdIsNotNull() {
+            addCriterion("ID is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdEqualTo(String value) {
-            addCriterion("USER_ID =", value, "userId");
+        public Criteria andIdEqualTo(Integer value) {
+            addCriterion("ID =", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdNotEqualTo(String value) {
-            addCriterion("USER_ID <>", value, "userId");
+        public Criteria andIdNotEqualTo(Integer value) {
+            addCriterion("ID <>", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdGreaterThan(String value) {
-            addCriterion("USER_ID >", value, "userId");
+        public Criteria andIdGreaterThan(Integer value) {
+            addCriterion("ID >", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdGreaterThanOrEqualTo(String value) {
-            addCriterion("USER_ID >=", value, "userId");
+        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("ID >=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdLessThan(String value) {
-            addCriterion("USER_ID <", value, "userId");
+        public Criteria andIdLessThan(Integer value) {
+            addCriterion("ID <", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdLessThanOrEqualTo(String value) {
-            addCriterion("USER_ID <=", value, "userId");
+        public Criteria andIdLessThanOrEqualTo(Integer value) {
+            addCriterion("ID <=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdLike(String value) {
-            addCriterion("USER_ID like", value, "userId");
+        public Criteria andIdIn(List<Integer> values) {
+            addCriterion("ID in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdNotLike(String value) {
-            addCriterion("USER_ID not like", value, "userId");
+        public Criteria andIdNotIn(List<Integer> values) {
+            addCriterion("ID not in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdIn(List<String> values) {
-            addCriterion("USER_ID in", values, "userId");
+        public Criteria andIdBetween(Integer value1, Integer value2) {
+            addCriterion("ID between", value1, value2, "id");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdNotIn(List<String> values) {
-            addCriterion("USER_ID not in", values, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdBetween(String value1, String value2) {
-            addCriterion("USER_ID between", value1, value2, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdNotBetween(String value1, String value2) {
-            addCriterion("USER_ID not between", value1, value2, "userId");
+        public Criteria andIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("ID not between", value1, value2, "id");
             return (Criteria) this;
         }
 
@@ -565,63 +555,63 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andOlgLoginTimeIsNull() {
-            addCriterion("OLG_LOGIN_TIME is null");
+        public Criteria andOldLoginTimeIsNull() {
+            addCriterion("OLD_LOGIN_TIME is null");
             return (Criteria) this;
         }
 
-        public Criteria andOlgLoginTimeIsNotNull() {
-            addCriterion("OLG_LOGIN_TIME is not null");
+        public Criteria andOldLoginTimeIsNotNull() {
+            addCriterion("OLD_LOGIN_TIME is not null");
             return (Criteria) this;
         }
 
-        public Criteria andOlgLoginTimeEqualTo(Date value) {
-            addCriterion("OLG_LOGIN_TIME =", value, "olgLoginTime");
+        public Criteria andOldLoginTimeEqualTo(Date value) {
+            addCriterion("OLD_LOGIN_TIME =", value, "oldLoginTime");
             return (Criteria) this;
         }
 
-        public Criteria andOlgLoginTimeNotEqualTo(Date value) {
-            addCriterion("OLG_LOGIN_TIME <>", value, "olgLoginTime");
+        public Criteria andOldLoginTimeNotEqualTo(Date value) {
+            addCriterion("OLD_LOGIN_TIME <>", value, "oldLoginTime");
             return (Criteria) this;
         }
 
-        public Criteria andOlgLoginTimeGreaterThan(Date value) {
-            addCriterion("OLG_LOGIN_TIME >", value, "olgLoginTime");
+        public Criteria andOldLoginTimeGreaterThan(Date value) {
+            addCriterion("OLD_LOGIN_TIME >", value, "oldLoginTime");
             return (Criteria) this;
         }
 
-        public Criteria andOlgLoginTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("OLG_LOGIN_TIME >=", value, "olgLoginTime");
+        public Criteria andOldLoginTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("OLD_LOGIN_TIME >=", value, "oldLoginTime");
             return (Criteria) this;
         }
 
-        public Criteria andOlgLoginTimeLessThan(Date value) {
-            addCriterion("OLG_LOGIN_TIME <", value, "olgLoginTime");
+        public Criteria andOldLoginTimeLessThan(Date value) {
+            addCriterion("OLD_LOGIN_TIME <", value, "oldLoginTime");
             return (Criteria) this;
         }
 
-        public Criteria andOlgLoginTimeLessThanOrEqualTo(Date value) {
-            addCriterion("OLG_LOGIN_TIME <=", value, "olgLoginTime");
+        public Criteria andOldLoginTimeLessThanOrEqualTo(Date value) {
+            addCriterion("OLD_LOGIN_TIME <=", value, "oldLoginTime");
             return (Criteria) this;
         }
 
-        public Criteria andOlgLoginTimeIn(List<Date> values) {
-            addCriterion("OLG_LOGIN_TIME in", values, "olgLoginTime");
+        public Criteria andOldLoginTimeIn(List<Date> values) {
+            addCriterion("OLD_LOGIN_TIME in", values, "oldLoginTime");
             return (Criteria) this;
         }
 
-        public Criteria andOlgLoginTimeNotIn(List<Date> values) {
-            addCriterion("OLG_LOGIN_TIME not in", values, "olgLoginTime");
+        public Criteria andOldLoginTimeNotIn(List<Date> values) {
+            addCriterion("OLD_LOGIN_TIME not in", values, "oldLoginTime");
             return (Criteria) this;
         }
 
-        public Criteria andOlgLoginTimeBetween(Date value1, Date value2) {
-            addCriterion("OLG_LOGIN_TIME between", value1, value2, "olgLoginTime");
+        public Criteria andOldLoginTimeBetween(Date value1, Date value2) {
+            addCriterion("OLD_LOGIN_TIME between", value1, value2, "oldLoginTime");
             return (Criteria) this;
         }
 
-        public Criteria andOlgLoginTimeNotBetween(Date value1, Date value2) {
-            addCriterion("OLG_LOGIN_TIME not between", value1, value2, "olgLoginTime");
+        public Criteria andOldLoginTimeNotBetween(Date value1, Date value2) {
+            addCriterion("OLD_LOGIN_TIME not between", value1, value2, "oldLoginTime");
             return (Criteria) this;
         }
 
@@ -1297,11 +1287,6 @@ public class UserExample {
 
         public Criteria and( String condition) {
             addCriterion(condition);
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdLikeInsensitive(String value) {
-            addCriterion("upper(USER_ID) like", value.toUpperCase(), "userId");
             return (Criteria) this;
         }
 

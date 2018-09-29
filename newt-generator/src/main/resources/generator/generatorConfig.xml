@@ -7,7 +7,7 @@
     <!-- 指定外部的属性元素 -->
     <properties resource="application.yml"/>
     <!-- 必须 指定生成一组对象的环境 -->
-    <context id="MysqlTkDemo" targetRuntime="MyBatis3" defaultModelType="flat">
+    <context id="Mysql" targetRuntime="MyBatis3" defaultModelType="flat">
         <!--分隔符 -->
         <property name="beginningDelimiter" value="`"/>
         <property name="endingDelimiter" value="`"/>
@@ -69,13 +69,29 @@
         </javaClientGenerator>
 
 
-        <table tableName="user" enableCountByExample="true"
-               enableUpdateByExample="true" enableDeleteByExample="true"
-               enableSelectByExample="true" selectByExampleQueryId="true">
+        <table tableName="user">
             <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
             <property name="useActualColumnNames" value="false"/>
             <!-- MySQL数据库表主键 -->
             <generatedKey column="USER_ID" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="log_info">
+            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
+            <property name="useActualColumnNames" value="false"/>
+            <!-- MySQL数据库表主键 -->
+            <generatedKey column="ID" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="user_home_link">
+            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
+            <property name="useActualColumnNames" value="false"/>
+            <!-- MySQL数据库表主键 -->
+            <generatedKey column="ID" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="user_role">
+            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
+            <property name="useActualColumnNames" value="false"/>
+            <!-- MySQL数据库表主键 -->
+            <generatedKey column="ID" sqlStatement="Mysql" identity="true"/>
         </table>
     </context>
 </generatorConfiguration>

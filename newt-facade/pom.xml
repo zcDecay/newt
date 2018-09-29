@@ -13,11 +13,6 @@
 
     <!--引入module-->
     <dependencies>
-
-        <dependency>
-            <groupId>com.newt</groupId>
-            <artifactId>newt-service</artifactId>
-        </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>

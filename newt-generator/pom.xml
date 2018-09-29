@@ -17,8 +17,14 @@
 
     <!-- Web模块相关依赖 -->
     <dependencies>
-
-
+        <dependency>
+            <groupId>com.newt</groupId>
+            <artifactId>newt-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.newt</groupId>
+            <artifactId>newt-facade</artifactId>
+        </dependency>
 
         <!--依赖-->
         <!--druid-->

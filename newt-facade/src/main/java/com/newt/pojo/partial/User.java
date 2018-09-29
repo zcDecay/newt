@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
-* Created by Mybatis Generator on 2018/09/27
+* Created by Mybatis Generator on 2018/09/29
 */
 @Data
 @Builder
@@ -19,9 +19,9 @@ public class User implements Serializable {
     /**
      * 用户id
      */
-    @Column(name = "USER_ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String userId;
+    @Id
+    @Column(name = "ID")
+    private Integer id;
 
     /**
      * 创建用户时间
@@ -62,8 +62,8 @@ public class User implements Serializable {
     /**
      * 上一次登录时间
      */
-    @Column(name = "OLG_LOGIN_TIME")
-    private Date olgLoginTime;
+    @Column(name = "OLD_LOGIN_TIME")
+    private Date oldLoginTime;
 
     /**
      * 昵称

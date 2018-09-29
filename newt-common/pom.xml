@@ -19,17 +19,6 @@
     <!-- Web模块相关依赖 -->
     <dependencies>
 
-        <!--引入module-->
-        <dependency>
-            <groupId>com.newt</groupId>
-            <artifactId>newt-service</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.newt</groupId>
-            <artifactId>newt-authorization</artifactId>
-        </dependency>
-
-
         <!--druid-->
         <dependency>
             <groupId>com.alibaba</groupId>

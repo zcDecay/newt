@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newt.mapper.partial.LogInfoMapper">
+  <resultMap id="BaseResultMap" type="com.newt.pojo.partial.LogInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="USER_ID" jdbcType="INTEGER" property="userId" />
+    <result column="OPERATION_FUNCTION" jdbcType="VARCHAR" property="operationFunction" />
+    <result column="IP" jdbcType="VARCHAR" property="ip" />
+    <result column="OPERATION_TYPE" jdbcType="INTEGER" property="operationType" />
+    <result column="OPERATION_RESULT" jdbcType="INTEGER" property="operationResult" />
+    <result column="OPERATION_PICK_NAME" jdbcType="VARCHAR" property="operationPickName" />
+    <result column="GMT_CREATE" jdbcType="VARCHAR" property="gmtCreate" />
+    <result column="GMT_MODIFIED" jdbcType="VARCHAR" property="gmtModified" />
+    <result column="OPERATION_MSG" jdbcType="VARCHAR" property="operationMsg" />
+    <result column="OPERATION_TIME" jdbcType="TIMESTAMP" property="operationTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    ID, USER_ID, OPERATION_FUNCTION, IP, OPERATION_TYPE, OPERATION_RESULT, OPERATION_PICK_NAME, 
+    GMT_CREATE, GMT_MODIFIED, OPERATION_MSG, OPERATION_TIME
+  </sql>
+  <select id="selectByExample" parameterType="com.newt.pojo.partial.LogInfoExample" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from log_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from log_info
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    delete from log_info
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.newt.pojo.partial.LogInfoExample">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    delete from log_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.newt.pojo.partial.LogInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into log_info (USER_ID, OPERATION_FUNCTION, IP, 
+      OPERATION_TYPE, OPERATION_RESULT, OPERATION_PICK_NAME, 
+      GMT_CREATE, GMT_MODIFIED, OPERATION_MSG, 
+      OPERATION_TIME)
+    values (#{userId,jdbcType=INTEGER}, #{operationFunction,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, 
+      #{operationType,jdbcType=INTEGER}, #{operationResult,jdbcType=INTEGER}, #{operationPickName,jdbcType=VARCHAR}, 
+      #{gmtCreate,jdbcType=VARCHAR}, #{gmtModified,jdbcType=VARCHAR}, #{operationMsg,jdbcType=VARCHAR}, 
+      #{operationTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.newt.pojo.partial.LogInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into log_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="operationFunction != null">
+        OPERATION_FUNCTION,
+      </if>
+      <if test="ip != null">
+        IP,
+      </if>
+      <if test="operationType != null">
+        OPERATION_TYPE,
+      </if>
+      <if test="operationResult != null">
+        OPERATION_RESULT,
+      </if>
+      <if test="operationPickName != null">
+        OPERATION_PICK_NAME,
+      </if>
+      <if test="gmtCreate != null">
+        GMT_CREATE,
+      </if>
+      <if test="gmtModified != null">
+        GMT_MODIFIED,
+      </if>
+      <if test="operationMsg != null">
+        OPERATION_MSG,
+      </if>
+      <if test="operationTime != null">
+        OPERATION_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="operationFunction != null">
+        #{operationFunction,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="operationType != null">
+        #{operationType,jdbcType=INTEGER},
+      </if>
+      <if test="operationResult != null">
+        #{operationResult,jdbcType=INTEGER},
+      </if>
+      <if test="operationPickName != null">
+        #{operationPickName,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=VARCHAR},
+      </if>
+      <if test="operationMsg != null">
+        #{operationMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="operationTime != null">
+        #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.newt.pojo.partial.LogInfoExample" resultType="java.lang.Long">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    select count(*) from log_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    update log_info
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null">
+        USER_ID = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.operationFunction != null">
+        OPERATION_FUNCTION = #{record.operationFunction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ip != null">
+        IP = #{record.ip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operationType != null">
+        OPERATION_TYPE = #{record.operationType,jdbcType=INTEGER},
+      </if>
+      <if test="record.operationResult != null">
+        OPERATION_RESULT = #{record.operationResult,jdbcType=INTEGER},
+      </if>
+      <if test="record.operationPickName != null">
+        OPERATION_PICK_NAME = #{record.operationPickName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gmtCreate != null">
+        GMT_CREATE = #{record.gmtCreate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gmtModified != null">
+        GMT_MODIFIED = #{record.gmtModified,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operationMsg != null">
+        OPERATION_MSG = #{record.operationMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operationTime != null">
+        OPERATION_TIME = #{record.operationTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    update log_info
+    set ID = #{record.id,jdbcType=INTEGER},
+      USER_ID = #{record.userId,jdbcType=INTEGER},
+      OPERATION_FUNCTION = #{record.operationFunction,jdbcType=VARCHAR},
+      IP = #{record.ip,jdbcType=VARCHAR},
+      OPERATION_TYPE = #{record.operationType,jdbcType=INTEGER},
+      OPERATION_RESULT = #{record.operationResult,jdbcType=INTEGER},
+      OPERATION_PICK_NAME = #{record.operationPickName,jdbcType=VARCHAR},
+      GMT_CREATE = #{record.gmtCreate,jdbcType=VARCHAR},
+      GMT_MODIFIED = #{record.gmtModified,jdbcType=VARCHAR},
+      OPERATION_MSG = #{record.operationMsg,jdbcType=VARCHAR},
+      OPERATION_TIME = #{record.operationTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.newt.pojo.partial.LogInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    update log_info
+    <set>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="operationFunction != null">
+        OPERATION_FUNCTION = #{operationFunction,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        IP = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="operationType != null">
+        OPERATION_TYPE = #{operationType,jdbcType=INTEGER},
+      </if>
+      <if test="operationResult != null">
+        OPERATION_RESULT = #{operationResult,jdbcType=INTEGER},
+      </if>
+      <if test="operationPickName != null">
+        OPERATION_PICK_NAME = #{operationPickName,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        GMT_CREATE = #{gmtCreate,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtModified != null">
+        GMT_MODIFIED = #{gmtModified,jdbcType=VARCHAR},
+      </if>
+      <if test="operationMsg != null">
+        OPERATION_MSG = #{operationMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="operationTime != null">
+        OPERATION_TIME = #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.newt.pojo.partial.LogInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    update log_info
+    set USER_ID = #{userId,jdbcType=INTEGER},
+      OPERATION_FUNCTION = #{operationFunction,jdbcType=VARCHAR},
+      IP = #{ip,jdbcType=VARCHAR},
+      OPERATION_TYPE = #{operationType,jdbcType=INTEGER},
+      OPERATION_RESULT = #{operationResult,jdbcType=INTEGER},
+      OPERATION_PICK_NAME = #{operationPickName,jdbcType=VARCHAR},
+      GMT_CREATE = #{gmtCreate,jdbcType=VARCHAR},
+      GMT_MODIFIED = #{gmtModified,jdbcType=VARCHAR},
+      OPERATION_MSG = #{operationMsg,jdbcType=VARCHAR},
+      OPERATION_TIME = #{operationTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="insertList" parameterType="java.util.List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into log_info (USER_ID, OPERATION_FUNCTION, 
+      IP, OPERATION_TYPE, OPERATION_RESULT, 
+      OPERATION_PICK_NAME, GMT_CREATE, 
+      GMT_MODIFIED, OPERATION_MSG, 
+      OPERATION_TIME)
+    <foreach collection="records" index="index" item="record" separator=";">
+    values (#{record.userId,jdbcType=INTEGER}, #{record.operationFunction,jdbcType=VARCHAR}, 
+      #{record.ip,jdbcType=VARCHAR}, #{record.operationType,jdbcType=INTEGER}, #{record.operationResult,jdbcType=INTEGER}, 
+      #{record.operationPickName,jdbcType=VARCHAR}, #{record.gmtCreate,jdbcType=VARCHAR}, 
+      #{record.gmtModified,jdbcType=VARCHAR}, #{record.operationMsg,jdbcType=VARCHAR}, 
+      #{record.operationTime,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+  <insert id="insertSelectiveList" parameterType="java.util.List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into log_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="record.userId != null">
+        USER_ID,
+      </if>
+      <if test="record.operationFunction != null">
+        OPERATION_FUNCTION,
+      </if>
+      <if test="record.ip != null">
+        IP,
+      </if>
+      <if test="record.operationType != null">
+        OPERATION_TYPE,
+      </if>
+      <if test="record.operationResult != null">
+        OPERATION_RESULT,
+      </if>
+      <if test="record.operationPickName != null">
+        OPERATION_PICK_NAME,
+      </if>
+      <if test="record.gmtCreate != null">
+        GMT_CREATE,
+      </if>
+      <if test="record.gmtModified != null">
+        GMT_MODIFIED,
+      </if>
+      <if test="record.operationMsg != null">
+        OPERATION_MSG,
+      </if>
+      <if test="record.operationTime != null">
+        OPERATION_TIME,
+      </if>
+    </trim>
+    <foreach collection="records" index="index" item="record" separator=";">
+      <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="record.userId != null">
+          #{record.userId,jdbcType=INTEGER},
+        </if>
+        <if test="record.operationFunction != null">
+          #{record.operationFunction,jdbcType=VARCHAR},
+        </if>
+        <if test="record.ip != null">
+          #{record.ip,jdbcType=VARCHAR},
+        </if>
+        <if test="record.operationType != null">
+          #{record.operationType,jdbcType=INTEGER},
+        </if>
+        <if test="record.operationResult != null">
+          #{record.operationResult,jdbcType=INTEGER},
+        </if>
+        <if test="record.operationPickName != null">
+          #{record.operationPickName,jdbcType=VARCHAR},
+        </if>
+        <if test="record.gmtCreate != null">
+          #{record.gmtCreate,jdbcType=VARCHAR},
+        </if>
+        <if test="record.gmtModified != null">
+          #{record.gmtModified,jdbcType=VARCHAR},
+        </if>
+        <if test="record.operationMsg != null">
+          #{record.operationMsg,jdbcType=VARCHAR},
+        </if>
+        <if test="record.operationTime != null">
+          #{record.operationTime,jdbcType=TIMESTAMP},
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+</mapper>

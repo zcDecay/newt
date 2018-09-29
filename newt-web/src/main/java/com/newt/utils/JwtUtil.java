@@ -2,16 +2,13 @@
 
 package com.newt.utils;
 
-import com.alibaba.fastjson.JSON;
+import com.newt.pojo.partial.User;
 import com.newt.pojo.vo.UserVo;
-import com.newt.utils.pojo.TokenObject;
-import io.jsonwebtoken.*;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.Jwts;
 
-import javax.crypto.spec.SecretKeySpec;
-import javax.xml.bind.DatatypeConverter;
-import java.security.Key;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class JwtUtil {
@@ -31,7 +28,7 @@ public class JwtUtil {
 	 * @param r
 	 * @return
 	 */
-	public static String generateToken(UserVo r) {
+	public static String generateToken(User r) {
 		return generateToken(r, JwtUtil.JWT_TTL);
 	}
 
@@ -42,7 +39,7 @@ public class JwtUtil {
 	 * @param ttlMillis
 	 * @return
 	 */
-	public static String generateToken(UserVo user, long ttlMillis) {
+	public static String generateToken(User user, long ttlMillis) {
 		long nowMillis = System.currentTimeMillis();
 //		Claims claims = Jwts.claims().setSubject(user.getShopId()).setIssuedAt(new Date(nowMillis));
 //		claims.put("UserVo", JsonUtil.objectToJson(user));
