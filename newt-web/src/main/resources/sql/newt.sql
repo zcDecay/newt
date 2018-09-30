@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version 5.7.21)
-# Date: 2018-09-29 17:51:33
+# Date: 2018-09-30 11:35:16
 # Generator: MySQL-Front 6.1  (Build 1.1)
 
 
@@ -20,11 +20,12 @@ CREATE TABLE `log_info` (
   `OPERATION_MSG` varchar(510) NOT NULL DEFAULT '' COMMENT '消息（操作信息）',
   `OPERATION_TIME` datetime DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='日志信息表'
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='日志信息表'
 #
 # Data for table "log_info"
 #
 
+INSERT INTO `log_info` VALUES (1,1,'/login/getToken','127.0.0.1',1,1,'','','','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36','2018-09-30 10:56:51'),(2,1,'/login/getToken','127.0.0.1',1,1,'','','','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36','2018-09-30 11:03:19'),(3,1,'/login/getToken','127.0.0.1',1,1,'','','','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36','2018-09-30 11:08:21');
 
 #
 # Structure for table "user"
@@ -55,7 +56,7 @@ CREATE TABLE `user` (
 # Data for table "user"
 #
 
-INSERT INTO `user` VALUES (1,'2018-09-18 14:05:43',NULL,'0:0:0:0:0:0:0:1',NULL,'2018-09-18 14:05:43',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'',NULL,NULL);
+INSERT INTO `user` VALUES (1,'2018-09-18 14:05:43',NULL,'127.0.0.1',3,'2018-09-30 11:08:21','127.0.0.1',NULL,'admin',NULL,NULL,NULL,1,NULL,NULL,'',NULL,'533070E1CD4CED9F3D663688F1A31EA8');
 
 #
 # Structure for table "user_home_link"
