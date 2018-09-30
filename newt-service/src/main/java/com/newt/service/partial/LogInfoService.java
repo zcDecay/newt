@@ -4,15 +4,18 @@ import com.newt.enums.OperationEnum;
 import com.newt.enums.OperationTypeEnum;
 import com.newt.mapper.partial.LogInfoMapper;
 import com.newt.pojo.partial.LogInfo;
-import com.newt.pojo.partial.User;
+import com.newt.pojo.vo.UserVo;
+import com.newt.utils.CommitUtil;
 import com.newt.utils.DateTimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * @Description LogInfo
  * @Author zcc
  * @Date 18/09/29
  */
+@Service
 public class LogInfoService {
 
     @Autowired
@@ -26,7 +29,7 @@ public class LogInfoService {
      * @param msg
      * @return: void
      */
-    public void saveLogForLogin (User user,String ip, String function, String msg){
+    public boolean saveLogForLogin (UserVo user, String ip, String function, String msg){
         LogInfo log = LogInfo.builder()
                 .ip(ip)
                 .operationFunction(function)
@@ -37,6 +40,6 @@ public class LogInfoService {
                 .userId(user.getId())
                 .operationPickName(user.getPickName())
                 .build();
-        logInfoMapper.insertSelective(log);
+        return CommitUtil.isCommit(logInfoMapper.insertSelective(log));
     }
 }

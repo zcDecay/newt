@@ -19,16 +19,6 @@
     <!-- Web模块相关依赖 -->
     <dependencies>
 
-        <!--引入module-->
-        <!--<dependency>-->
-            <!--<groupId>com.newt</groupId>-->
-            <!--<artifactId>newt-common</artifactId>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>com.newt</groupId>-->
-            <!--<artifactId>newt-service</artifactId>-->
-        <!--</dependency>-->
-
         <!--导入配置文件处理器，配置文件进行绑定就会有提示-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

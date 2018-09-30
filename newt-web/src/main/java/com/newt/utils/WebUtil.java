@@ -18,7 +18,7 @@ public class WebUtil {
 
     private static final int MAX_PAGE_SIZE = 100;
 
-    public static final String TOKEN_KEY = "Newt-Token";
+    public static final String TOKEN_KEY = "Admin-Token";
 
     /**
      * 获取当前用户信息
@@ -71,6 +71,17 @@ public class WebUtil {
             url.append(request.getQueryString());
         }
         return url.toString();
+    }
+
+    /**
+     * 获取请求路径，去除项目名
+     *
+     * @param request
+     * @return
+     */
+    public static String getURL(HttpServletRequest request) {
+        String coyoteRequest = request.getRequestURI();
+        return coyoteRequest;
     }
 
     public static String getIP() {

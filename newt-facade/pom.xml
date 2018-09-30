@@ -9,8 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.newt</groupId>
     <artifactId>newt-facade</artifactId>
-
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>newt-facade</name>
     <!--引入module-->
     <dependencies>
         <dependency>

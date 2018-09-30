@@ -91,6 +91,11 @@
                 <artifactId>newt-authorization</artifactId>
                 <version>${newt.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.newt</groupId>
+                <artifactId>newt-facade</artifactId>
+                <version>${newt.version}</version>
+            </dependency>
 
 
             <!--mysql-->
@@ -300,6 +305,15 @@
     </profiles>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
         <pluginManagement>
             <plugins>
                 <plugin>

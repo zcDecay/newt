@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
-* Created by Mybatis Generator on 2018/09/29
+* Created by Mybatis Generator on 2018/09/30
 */
 @Table(name = "user_home_link")
 @Data

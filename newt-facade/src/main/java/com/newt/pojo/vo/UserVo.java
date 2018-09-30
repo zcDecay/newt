@@ -1,8 +1,10 @@
 package com.newt.pojo.vo;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import com.newt.pojo.partial.User;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 
 /**
@@ -10,11 +12,14 @@ import java.util.Date;
  * @Author zcc
  * @Date 18/09/26
  */
-public class UserVo {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserVo extends User{
     /**
      * 用户id
      */
-    private String userId;
+    private Integer id;
 
     /**
      * 创建用户时间
@@ -49,7 +54,7 @@ public class UserVo {
     /**
      * 上一次登录时间
      */
-    private Date olgLoginTime;
+    private Date oldLoginTime;
 
     /**
      * 昵称
@@ -59,7 +64,7 @@ public class UserVo {
     /**
      * 角色ID
      */
-    private String roleId;
+    private Integer roleId;
 
 
     /**

@@ -2,13 +2,11 @@
 
 package com.newt.utils;
 
-import com.newt.pojo.partial.User;
 import com.newt.pojo.vo.UserVo;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtException;
-import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class JwtUtil {
@@ -28,7 +26,7 @@ public class JwtUtil {
 	 * @param r
 	 * @return
 	 */
-	public static String generateToken(User r) {
+	public static String generateToken(UserVo r) {
 		return generateToken(r, JwtUtil.JWT_TTL);
 	}
 
@@ -39,18 +37,17 @@ public class JwtUtil {
 	 * @param ttlMillis
 	 * @return
 	 */
-	public static String generateToken(User user, long ttlMillis) {
+	public static String generateToken(UserVo user, long ttlMillis) {
 		long nowMillis = System.currentTimeMillis();
-//		Claims claims = Jwts.claims().setSubject(user.getShopId()).setIssuedAt(new Date(nowMillis));
-//		claims.put("UserVo", JsonUtil.objectToJson(user));
-//		JwtBuilder builder = Jwts.builder().setId(id).setClaims(claims).signWith(SignatureAlgorithm.HS512, secret);
-//		if (ttlMillis >= 0) {
-//			long expMillis = nowMillis + ttlMillis;
-//			Date exp = new Date(expMillis);
-//			builder.setExpiration(exp);
-//		}
-//		return builder.compact();
-        return "";
+		Claims claims = Jwts.claims().setSubject(String.valueOf(user.getId())).setIssuedAt(DateTimeUtil.getTimeStamp());
+		claims.put("user", JsonUtil.objectToJson(user));
+		JwtBuilder builder = Jwts.builder().setId(id).setClaims(claims).signWith(SignatureAlgorithm.HS512, secret);
+		if (ttlMillis >= 0) {
+			long expMillis = nowMillis + ttlMillis;
+			Date exp = new Date(expMillis);
+			builder.setExpiration(exp);
+		}
+		return builder.compact();
 	}
 
 	/**
@@ -63,19 +60,12 @@ public class JwtUtil {
 		try {
 			Claims body = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
 			UserVo r = new UserVo();
-//			r.setShopId(body.getSubject());
-			if (body.get("UserVo") != null) {
-				r = JsonUtil.jsonToPojo(body.get("UserVo").toString(), UserVo.class);
+			r.setId(Integer.getInteger(body.getSubject()));
+			if (body.get("user") != null) {
+				r = JsonUtil.jsonToPojo(body.get("user").toString(), UserVo.class);
 			}
-			/*
-			r.setUserId((String) body.get("userId"));
-			r.setBizCenterId((String) body.get("bizCenterId"));
-			r.setCompanyName((String) body.get("companyName"));
-			*/
-			// TODO
 			List<String> roles = new ArrayList<>();
 			roles.add("admin");
-			// r.setRoles(roles);
 			return r;
 		} catch (JwtException | ClassCastException e) {
 			return null;

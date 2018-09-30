@@ -7,7 +7,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 /**
-* Created by Mybatis Generator on 2018/09/29
+* Created by Mybatis Generator on 2018/09/30
 */
 public interface UserRoleMapper extends BaseMapper<UserRole> {
     long countByExample(UserRoleExample example);
