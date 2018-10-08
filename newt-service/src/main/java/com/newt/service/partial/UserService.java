@@ -1,13 +1,16 @@
 package com.newt.service.partial;
 
+import com.newt.enums.RoleEnum;
+import com.newt.enums.UserStateEnum;
 import com.newt.mapper.partial.UserMapper;
 import com.newt.pojo.partial.User;
 import com.newt.pojo.partial.UserExample;
-import com.newt.utils.CommitUtil;
-import com.newt.utils.EmptyUtil;
+import com.newt.utils.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,6 +23,12 @@ public class UserService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Value("${favicon}")
+    private String favicon;
+
+    @Value("${userIcon}")
+    private String userIcon;
 
     /**
      * @Description: 查找用户
@@ -51,5 +60,49 @@ public class UserService {
         List<User> users = userMapper.selectByExample(example);
 
         return EmptyUtil.isEmpty(users) ? null : users.get(0);
+    }
+
+    /**
+     * @Description: 查找用户通过昵称
+     * @return: com.newt.pojo.partial.User
+     */
+    public Boolean selectUserByPickName (User user){
+        UserExample example = new UserExample();
+        if (EmptyUtil.isEmpty(user)){
+            return  null;
+        }
+        if (EmptyUtil.isEmpty(user.getPickName())){
+            return  null;
+        }
+        example.createCriteria().andPickNameEqualTo(user.getPickName());
+        List<User> users = userMapper.selectByExample(example);
+
+        return EmptyUtil.isNotEmpty(users);
+    }
+
+    /**
+     * @Description: 保存注册用户
+     * @param:  * @param user
+     * @return: com.newt.pojo.partial.User
+     */
+    public boolean saveUser (User user){
+        Date timeStamp = DateTimeUtil.getTimeStamp();
+        String salt = IDUtil.getRandomNumberByLength(5);
+        String userPwd = PasswordUtil.encryptPassword(salt, user.getUserPwd());
+
+        user = User.builder()
+                .createTime(timeStamp)
+                .salt(salt)
+                .roleId(RoleEnum.ONE.getCode())
+                .favicon(favicon)
+                .state(UserStateEnum.NORMAL.getCode())
+                .userIcon(userIcon)
+                .userPwd(userPwd)
+                .pickName(user.getPickName())
+                .email(user.getEmail())
+                .userPhone(user.getUserPhone())
+                .build();
+
+        return CommitUtil.isCommit(userMapper.insertSelective(user));
     }
 }

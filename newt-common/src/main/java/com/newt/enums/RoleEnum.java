@@ -7,16 +7,25 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * 操作枚举
+ * 角色枚举
  */
 @Getter
 @AllArgsConstructor
-public enum OperationEnum {
+public enum RoleEnum {
 
-    SUCCESS(1, "成功"),
+    ONE(1001, "凝气"),
 
-    FAILD(2, "失败");
+    TWO(1002, "筑基"),
 
+    THREE(1003, "结丹"),
+
+    FOUR(1004, "元婴"),
+
+    FIVE(1005, "化神"),
+
+    SIX(1006, "婴变"),
+
+    SEVEN(1007, "问鼎");
     /**
      * 枚举状态
      */
@@ -25,6 +34,7 @@ public enum OperationEnum {
      * 枚举详情
      */
     private String desc;
+
 
     public void setCode(int code) {
         this.code = code;
@@ -40,7 +50,7 @@ public enum OperationEnum {
      * @return: java.lang.String
      */
     public static String getDesc(Integer code) {
-        for (OperationEnum state : OperationEnum.values()) {
+        for (RoleEnum state : RoleEnum.values()) {
             if (state.code.equals(code)) {
                 return state.desc;
             }

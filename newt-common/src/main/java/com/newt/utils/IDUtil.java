@@ -18,7 +18,7 @@ public class IDUtil {
     /**
      * 图片名生成
      */
-    public static String genImageName() {
+    public static String getImageName() {
         // 取当前时间的长整形值包含毫秒
         long millis = System.currentTimeMillis();
         // long millis = System.nanoTime();
@@ -34,7 +34,7 @@ public class IDUtil {
     /**
      * 商品id生成
      */
-    public static long genItemId() {
+    public static long getItemId() {
         // 取当前时间的长整形值包含毫秒
         long millis = System.currentTimeMillis();
         // long millis = System.nanoTime();
@@ -50,7 +50,7 @@ public class IDUtil {
     /**
      * 商品id生成
      */
-    public static String genId() {
+    public static String getId() {
         // 取当前时间的长整形值包含毫秒
         long millis = System.currentTimeMillis();
         // long millis = System.nanoTime();
@@ -66,7 +66,7 @@ public class IDUtil {
     }
 
     public static void main(String[] args) {
-        System.out.println(genId());
+        System.out.println(getId());
     }
 
     /**

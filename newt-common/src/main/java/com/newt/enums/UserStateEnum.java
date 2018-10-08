@@ -13,15 +13,15 @@ import java.util.Map;
 @AllArgsConstructor
 public enum UserStateEnum {
 
-    NORMAL("1", "正常"),
+    NORMAL(1, "正常"),
 
-    FORBIDDEN("2", "禁用");
+    FORBIDDEN(2, "禁用");
 
 
     /**
      * 枚举状态
      */
-    private String code;
+    private Integer code;
     /**
      * 枚举详情
      */
@@ -32,7 +32,7 @@ public enum UserStateEnum {
      * @param:  * @param code 状态
      * @return: java.lang.String
      */
-    public static String getDesc(String code) {
+    public static String getDesc(Integer code) {
         for (UserStateEnum state : UserStateEnum.values()) {
             if (state.code.equals(code)) {
                 return state.desc;
@@ -46,15 +46,15 @@ public enum UserStateEnum {
      * @param:  * @param
      * @return: java.util.Map<java.lang.String,java.lang.String>
      */
-    public static Map<String,String> getMap(){
-        Map<String,String> map = new LinkedHashMap<>();
+    public static Map<Integer,String> getMap(){
+        Map<Integer,String> map = new LinkedHashMap<>();
         for (UserStateEnum state : UserStateEnum.values()){
             map.put(state.getCode(),state.getDesc());
         }
         return map;
     }
 
-    public void setCode(String code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 

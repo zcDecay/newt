@@ -54,7 +54,7 @@ public class LoginController {
                          @RequestParam(value = "userPwd", required = true) String userPwd,
                          HttpServletRequest request){
         String url = WebUtil.getURL(request);
-        User allUser = userService.findAllUser();
+
         User user = userService.findByLoginName(pickName);
         if (EmptyUtil.isEmpty(user)){
             return ResultGenerator.getFailResult(ResultStatus.USER_NOT_FOUND.getDesc());
