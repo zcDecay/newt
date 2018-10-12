@@ -18,14 +18,14 @@ public class WebUtil {
 
     private static final int MAX_PAGE_SIZE = 100;
 
-    public static final String TOKEN_KEY = "Admin-Token";
+    public static final String TOKEN_KEY = "Newt-Token";
 
     /**
      * 获取当前用户信息
      *
      * @return
      */
-    public static UserVo getUserVo() {
+    public static UserVo getUser() {
         UserVo info = new UserVo();
         String token = getToken(TOKEN_KEY);
         if (StringUtils.isNotBlank(token)) {
@@ -46,7 +46,7 @@ public class WebUtil {
             token = request.getHeader(tokenName);
         }
         if (StringUtils.isBlank(token)) {
-            String strategy = CookieUtil.getCookie(request, "auth.strategy");
+            String strategy = CookieUtil.getCookie(request, "auth.newt");
             if (StringUtils.isNotBlank(strategy)) {
                 token = CookieUtil.getCookie(request, "auth._token." + strategy);
                 if (StringUtils.isNotBlank(token)) {

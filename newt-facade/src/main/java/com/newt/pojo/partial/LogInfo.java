@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
-* Created by Mybatis Generator on 2018/09/30
+* Created by Mybatis Generator on 2018/10/12
 */
 @Table(name = "log_info")
 @Data
@@ -50,7 +50,7 @@ public class LogInfo implements Serializable {
     private Integer operationType;
 
     /**
-     * 操作结果（1：成功，2：失败）
+     * 操作结果（0：失败，1：成功）
      */
     @Column(name = "OPERATION_RESULT")
     private Integer operationResult;

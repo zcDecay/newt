@@ -3,12 +3,11 @@ package com.newt.mapper.partial;
 import com.newt.pojo.partial.UserHomeLink;
 import com.newt.pojo.partial.UserHomeLinkExample;
 import com.newt.utils.mapper.BaseMapper;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
-
 /**
-* Created by Mybatis Generator on 2018/09/30
+* Created by Mybatis Generator on 2018/10/12
 */
 public interface UserHomeLinkMapper extends BaseMapper<UserHomeLink> {
     long countByExample(UserHomeLinkExample example);

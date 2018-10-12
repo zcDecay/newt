@@ -1,7 +1,8 @@
 package com.newt.service.partial;
 
+import com.newt.enums.NumberEnum;
 import com.newt.enums.RoleEnum;
-import com.newt.enums.UserStateEnum;
+import com.newt.enums.StateEnum;
 import com.newt.mapper.partial.UserMapper;
 import com.newt.pojo.partial.User;
 import com.newt.pojo.partial.UserExample;
@@ -40,7 +41,7 @@ public class UserService {
         example.createCriteria().andPickNameLikeInsensitive(pickName);
         List<User> users = userMapper.selectByExample(example);
 
-        return EmptyUtil.isEmpty(users) ? null : users.get(0);
+        return EmptyUtil.isEmpty(users) ? null : users.get(NumberEnum.ZERO.getCode());
     }
     /**
      * @Description: 更新用户信息
@@ -59,7 +60,7 @@ public class UserService {
         UserExample example = new UserExample();
         List<User> users = userMapper.selectByExample(example);
 
-        return EmptyUtil.isEmpty(users) ? null : users.get(0);
+        return EmptyUtil.isEmpty(users) ? null : users.get(NumberEnum.ZERO.getCode());
     }
 
     /**
@@ -87,7 +88,7 @@ public class UserService {
      */
     public boolean saveUser (User user){
         Date timeStamp = DateTimeUtil.getTimeStamp();
-        String salt = IDUtil.getRandomNumberByLength(5);
+        String salt = IDUtil.getRandomNumberByLength(NumberEnum.FIVE.getCode());
         String userPwd = PasswordUtil.encryptPassword(salt, user.getUserPwd());
 
         user = User.builder()
@@ -95,7 +96,7 @@ public class UserService {
                 .salt(salt)
                 .roleId(RoleEnum.ONE.getCode())
                 .favicon(favicon)
-                .state(UserStateEnum.NORMAL.getCode())
+                .state(StateEnum.NORMAL.getCode())
                 .userIcon(userIcon)
                 .userPwd(userPwd)
                 .pickName(user.getPickName())

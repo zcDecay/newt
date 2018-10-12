@@ -7,7 +7,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 /**
-* Created by Mybatis Generator on 2018/09/30
+* Created by Mybatis Generator on 2018/10/12
 */
 public interface LogInfoMapper extends BaseMapper<LogInfo> {
     long countByExample(LogInfoExample example);

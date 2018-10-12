@@ -7,25 +7,18 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * 角色枚举
+ * 状态枚举
  */
 @Getter
 @AllArgsConstructor
-public enum RoleEnum {
+public enum StateEnum {
 
-    ONE(1001, "凝气"),
 
-    TWO(1002, "筑基"),
+    FORBIDDEN(0, "禁用", "否"),
 
-    THREE(1003, "结丹"),
+    NORMAL(1, "开启", "是");
 
-    FOUR(1004, "元婴"),
 
-    FIVE(1005, "化神"),
-
-    SIX(1006, "婴变"),
-
-    SEVEN(1007, "问鼎");
     /**
      * 枚举状态
      */
@@ -35,14 +28,10 @@ public enum RoleEnum {
      */
     private String desc;
 
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
+    /**
+     * 描述
+     */
+    private String details;
 
     /**
      * @Description: 根据状态获取详情
@@ -50,9 +39,23 @@ public enum RoleEnum {
      * @return: java.lang.String
      */
     public static String getDesc(Integer code) {
-        for (RoleEnum state : RoleEnum.values()) {
+        for (StateEnum state : StateEnum.values()) {
             if (state.code.equals(code)) {
                 return state.desc;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * @Description: 根据状态获取details
+     * @param:  * @param code 状态
+     * @return: java.lang.String
+     */
+    public static String getDetails(Integer code) {
+        for (StateEnum state : StateEnum.values()) {
+            if (state.code.equals(code)) {
+                return state.details;
             }
         }
         return null;
@@ -65,9 +68,21 @@ public enum RoleEnum {
      */
     public static Map<Integer,String> getMap(){
         Map<Integer,String> map = new LinkedHashMap<>();
-        for (RoleEnum state : RoleEnum.values()){
+        for (StateEnum state : StateEnum.values()){
             map.put(state.getCode(),state.getDesc());
         }
         return map;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
     }
 }

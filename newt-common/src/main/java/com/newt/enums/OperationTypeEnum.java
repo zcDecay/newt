@@ -63,7 +63,7 @@ public enum OperationTypeEnum {
      */
     public static Map<Integer,String> getMap(){
         Map<Integer,String> map = new LinkedHashMap<>();
-        for (UserStateEnum state : UserStateEnum.values()){
+        for (OperationTypeEnum state : OperationTypeEnum.values()){
             map.put(state.getCode(),state.getDesc());
         }
         return map;

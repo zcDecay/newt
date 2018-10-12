@@ -1,7 +1,7 @@
 package com.newt.controller;
 
 import com.newt.enums.ResultStatus;
-import com.newt.enums.UserStateEnum;
+import com.newt.enums.StateEnum;
 import com.newt.pojo.Result;
 import com.newt.pojo.ResultGenerator;
 import com.newt.pojo.partial.User;
@@ -65,7 +65,7 @@ public class LoginController {
             return ResultGenerator.getFailResult(ResultStatus.PICKNAME_OR_PASSWORD_ERROR.getDesc());
         }
 
-        if (user.getState().equals(UserStateEnum.FORBIDDEN.getCode())){
+        if (user.getState().equals(StateEnum.FORBIDDEN.getCode())){
             return ResultGenerator.getFailResult(ResultStatus.FORBIDDEN.getDesc());
         }
 

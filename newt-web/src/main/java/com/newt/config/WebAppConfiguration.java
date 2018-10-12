@@ -35,8 +35,9 @@ public class WebAppConfiguration implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins("*")
-                .allowedMethods("GET", "POST", "DELETE", "PUT","PATCH")
-                .allowedHeaders("Origin","Content-Type","Accept","X-Requested-With","Access-Control-Allow-Methods","Access-Control-Allow-Headers")
+                .allowedMethods("GET", "POST", "DELETE", "PUT","PATCH", "OPTIONS")
+                .allowedHeaders("Origin","Content-Type","Accept","X-Requested-With","Access-Control-Allow-Methods","Access-Control-Allow-Headers","Newt-Token")
+                .exposedHeaders("Access-Control-Allow-Origin","Access-Control-Allow-Credentials")
                 .allowCredentials(true)
                 .maxAge(3600);
     }

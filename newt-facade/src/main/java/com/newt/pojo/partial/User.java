@@ -1,17 +1,15 @@
 package com.newt.pojo.partial;
 
+import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import java.io.Serializable;
-import java.util.Date;
-
 /**
-* Created by Mybatis Generator on 2018/09/30
+* Created by Mybatis Generator on 2018/10/12
 */
 @Data
 @Builder

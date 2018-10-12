@@ -66,7 +66,7 @@ public enum ResultStatus {
      */
     public static Map<Integer,String> getMap(){
         Map<Integer,String> map = new LinkedHashMap<>();
-        for (UserStateEnum state : UserStateEnum.values()){
+        for (ResultStatus state : ResultStatus.values()){
             map.put(state.getCode(),state.getDesc());
         }
         return map;
