@@ -88,6 +88,11 @@ public class UserVo extends User{
     private String userIcon;
 
     /**
+     * ico
+     */
+    private String favicon;
+
+    /**
      * 用户手机号
      */
     private String userPhone;

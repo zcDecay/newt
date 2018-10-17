@@ -1,8 +1,12 @@
 package com.newt.utils;
 
+import com.alibaba.fastjson.JSONObject;
+
 import java.lang.reflect.Field;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 public class MapUtil {
 
@@ -35,4 +39,14 @@ public class MapUtil {
         }
         return map;
     }
+    public static JSONObject map2Json(Map<Integer, String> map){
+        JSONObject json = new JSONObject();
+        Set<Integer> set = map.keySet();
+        for (Iterator<Integer> it = set.iterator(); it.hasNext();) {
+            Integer key = it.next();
+            json.put(String.valueOf(key), map.get(key));
+        }
+        return json;
+    }
+
 }

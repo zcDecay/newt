@@ -58,7 +58,7 @@ public class RouterService {
         example.createCriteria()
                 .andMenuGroupIdLessThanOrEqualTo(roleId)
                 .andEnableEqualTo(StateEnum.NORMAL.getCode());
-        example.setOrderByClause("MENU_ORDER asc");
+        example.setOrderByClause("MENU_ORDER ASC");
 
         List<UserMenu> userMenus = menuMapper.selectByExample(example);
 

@@ -6,6 +6,7 @@ import com.newt.enums.StateEnum;
 import com.newt.mapper.partial.UserMapper;
 import com.newt.pojo.partial.User;
 import com.newt.pojo.partial.UserExample;
+import com.newt.pojo.vo.UserVo;
 import com.newt.utils.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,22 +34,23 @@ public class UserService {
 
     /**
      * @Description: 查找用户
-     * @param:  * @param pickName
+     * @param: * @param pickName
      * @return: com.newt.pojo.partial.User
      */
-    public User findByLoginName (String pickName){
+    public User findByLoginName(String pickName) {
         UserExample example = new UserExample();
         example.createCriteria().andPickNameLikeInsensitive(pickName);
         List<User> users = userMapper.selectByExample(example);
 
         return EmptyUtil.isEmpty(users) ? null : users.get(NumberEnum.ZERO.getCode());
     }
+
     /**
      * @Description: 更新用户信息
-     * @param:  * @param user
+     * @param: * @param user
      * @return: boolean
      */
-    public boolean updateUser(User user){
+    public boolean updateUser(User user) {
         return CommitUtil.isCommit(userMapper.updateByPrimaryKeySelective(user));
     }
 
@@ -56,24 +58,24 @@ public class UserService {
      * @Description: 查找用户
      * @return: com.newt.pojo.partial.User
      */
-    public User findAllUser (){
+    public List<User> findAllUser() {
         UserExample example = new UserExample();
         List<User> users = userMapper.selectByExample(example);
 
-        return EmptyUtil.isEmpty(users) ? null : users.get(NumberEnum.ZERO.getCode());
+        return users;
     }
 
     /**
      * @Description: 查找用户通过昵称
      * @return: com.newt.pojo.partial.User
      */
-    public Boolean selectUserByPickName (User user){
+    public Boolean selectUserByPickName(User user) {
         UserExample example = new UserExample();
-        if (EmptyUtil.isEmpty(user)){
-            return  null;
+        if (EmptyUtil.isEmpty(user)) {
+            return null;
         }
-        if (EmptyUtil.isEmpty(user.getPickName())){
-            return  null;
+        if (EmptyUtil.isEmpty(user.getPickName())) {
+            return null;
         }
         example.createCriteria().andPickNameEqualTo(user.getPickName());
         List<User> users = userMapper.selectByExample(example);
@@ -83,10 +85,10 @@ public class UserService {
 
     /**
      * @Description: 保存注册用户
-     * @param:  * @param user
+     * @param: * @param user
      * @return: com.newt.pojo.partial.User
      */
-    public boolean saveUser (User user){
+    public boolean saveUser(User user) {
         Date timeStamp = DateTimeUtil.getTimeStamp();
         String salt = IDUtil.getRandomNumberByLength(NumberEnum.FIVE.getCode());
         String userPwd = PasswordUtil.encryptPassword(salt, user.getUserPwd());
@@ -105,5 +107,13 @@ public class UserService {
                 .build();
 
         return CommitUtil.isCommit(userMapper.insertSelective(user));
+    }
+
+
+    public boolean updateUserState(User user) {
+        Integer state = StateEnum.reverseCode(user.getState());
+        user.setState(state);
+
+        return CommitUtil.isCommit(userMapper.updateByPrimaryKeySelective(user));
     }
 }

@@ -25,8 +25,9 @@ public enum ResultStatus {
 
     FORBIDDEN(-1004,"用户被禁用，请联系管理员！"),
 
-    SYSTEM_ERROR(-1005,"系统错误，请联系管理员！");
+    SYSTEM_ERROR(-1005,"系统错误，请联系管理员！"),
 
+    PERMISSION_DENIED(-1006,"权限不足，请联系管理员");
 
     /**
      * 枚举状态

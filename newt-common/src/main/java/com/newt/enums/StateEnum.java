@@ -34,6 +34,20 @@ public enum StateEnum {
     private String details;
 
     /**
+     * @Description: 根据状态取反
+     * @param:  * @param code
+     * @return: java.lang.Integer
+     */
+    public static Integer reverseCode(Integer code){
+        for (StateEnum state : StateEnum.values()) {
+            if (!state.code.equals(code)) {
+                return state.getCode();
+            }
+        }
+        return null;
+    }
+
+    /**
      * @Description: 根据状态获取详情
      * @param:  * @param code 状态
      * @return: java.lang.String
