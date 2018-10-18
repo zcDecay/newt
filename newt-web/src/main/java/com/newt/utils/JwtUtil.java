@@ -39,7 +39,7 @@ public class JwtUtil {
 	 */
 	public static String generateToken(UserVo user, long ttlMillis) {
 		long nowMillis = System.currentTimeMillis();
-		Claims claims = Jwts.claims().setSubject(String.valueOf(user.getId())).setIssuedAt(DateTimeUtil.getTimeStamp());
+		Claims claims = Jwts.claims().setSubject(String.valueOf(user.getId())).setIssuedAt(DateTimeUtil.nowTimeStamp());
 		claims.put("user", JsonUtil.objectToJson(user));
 		JwtBuilder builder = Jwts.builder().setId(id).setClaims(claims).signWith(SignatureAlgorithm.HS512, secret);
 		if (ttlMillis >= 0) {

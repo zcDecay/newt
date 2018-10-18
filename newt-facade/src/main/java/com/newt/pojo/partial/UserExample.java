@@ -1285,6 +1285,76 @@ public class UserExample {
             return (Criteria) this;
         }
 
+        public Criteria andCauseIsNull() {
+            addCriterion("CAUSE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCauseIsNotNull() {
+            addCriterion("CAUSE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCauseEqualTo(String value) {
+            addCriterion("CAUSE =", value, "cause");
+            return (Criteria) this;
+        }
+
+        public Criteria andCauseNotEqualTo(String value) {
+            addCriterion("CAUSE <>", value, "cause");
+            return (Criteria) this;
+        }
+
+        public Criteria andCauseGreaterThan(String value) {
+            addCriterion("CAUSE >", value, "cause");
+            return (Criteria) this;
+        }
+
+        public Criteria andCauseGreaterThanOrEqualTo(String value) {
+            addCriterion("CAUSE >=", value, "cause");
+            return (Criteria) this;
+        }
+
+        public Criteria andCauseLessThan(String value) {
+            addCriterion("CAUSE <", value, "cause");
+            return (Criteria) this;
+        }
+
+        public Criteria andCauseLessThanOrEqualTo(String value) {
+            addCriterion("CAUSE <=", value, "cause");
+            return (Criteria) this;
+        }
+
+        public Criteria andCauseLike(String value) {
+            addCriterion("CAUSE like", value, "cause");
+            return (Criteria) this;
+        }
+
+        public Criteria andCauseNotLike(String value) {
+            addCriterion("CAUSE not like", value, "cause");
+            return (Criteria) this;
+        }
+
+        public Criteria andCauseIn(List<String> values) {
+            addCriterion("CAUSE in", values, "cause");
+            return (Criteria) this;
+        }
+
+        public Criteria andCauseNotIn(List<String> values) {
+            addCriterion("CAUSE not in", values, "cause");
+            return (Criteria) this;
+        }
+
+        public Criteria andCauseBetween(String value1, String value2) {
+            addCriterion("CAUSE between", value1, value2, "cause");
+            return (Criteria) this;
+        }
+
+        public Criteria andCauseNotBetween(String value1, String value2) {
+            addCriterion("CAUSE not between", value1, value2, "cause");
+            return (Criteria) this;
+        }
+
         public Criteria and( String condition) {
             addCriterion(condition);
             return (Criteria) this;
@@ -1337,6 +1407,11 @@ public class UserExample {
 
         public Criteria andUserPwdLikeInsensitive(String value) {
             addCriterion("upper(USER_PWD) like", value.toUpperCase(), "userPwd");
+            return (Criteria) this;
+        }
+
+        public Criteria andCauseLikeInsensitive(String value) {
+            addCriterion("upper(CAUSE) like", value.toUpperCase(), "cause");
             return (Criteria) this;
         }
     }

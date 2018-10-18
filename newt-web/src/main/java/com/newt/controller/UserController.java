@@ -1,5 +1,6 @@
 package com.newt.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.newt.enums.ResultStatus;
 import com.newt.enums.RoleEnum;
 import com.newt.pojo.Result;
@@ -16,11 +17,9 @@ import com.newt.utils.WebUtil;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -56,17 +55,6 @@ public class UserController {
 
         return ResultGenerator.getSuccessResult(user);
     }
-    @GetMapping("getUsers")
-    public Result getUser(){
-        List<UserVo> allUser = null;
-        UserVo user = WebUtil.getUser();
-
-        if (user.getRoleId().equals(RoleEnum.SEVEN.getCode())) {
-            List<User> users = userService.findAllUser();
-            allUser = users.stream().map(BeanUtil::copyUserToUserVo).collect(Collectors.toList());
-        }
-        return ResultGenerator.getSuccessResult(allUser);
-    }
 
     @GetMapping("/queryMenus")
     public Result queryMenus() {
@@ -82,27 +70,41 @@ public class UserController {
         return ResultGenerator.getSuccessResult(routerService.selectRouterByRoleId(user.getRoleId()));
     }
 
-    @GetMapping("queryUsers")
-    public Result queryUsers() {
+    @PostMapping("/queryUsers")
+    public Result queryUsers(User user) throws ParseException {
+        List<UserVo> allUser = null;
+        UserVo currentUser = WebUtil.getUser();
 
-        UserVo user = WebUtil.getUser();
+        int pageNum = WebUtil.getPageNum();
+        int pageSize = WebUtil.getPageSize();
+        String orderBy = WebUtil.getOrder();
 
-        if (!user.getRoleId().equals(RoleEnum.SEVEN.getCode())) {
-            return ResultGenerator.getFailResult(ResultStatus.PERMISSION_DENIED.getDesc());
+        if (currentUser.getRoleId().equals(RoleEnum.SEVEN.getCode())) {
+            List<User> userList = userService.findAllUser(pageNum, pageSize, orderBy, user);
+            allUser = userList.stream().map(u -> BeanUtil.copyUserToUserVo(u, Boolean.FALSE)).collect(Collectors.toList());
         }
-
-        return ResultGenerator.getSuccessResult(userService.findAllUser());
+        return ResultGenerator.getSuccessResult(new PageInfo<>(allUser));
     }
 
     @GetMapping("queryLevel")
     public Result queryLevel() {
         Map<Integer, String> roleMap = RoleEnum.getMap();
-        return ResultGenerator.getSuccessResult(MapUtil.map2Json(roleMap));
+        return ResultGenerator.getSuccessResult(MapUtil.map2List(roleMap), MapUtil.map2Json(roleMap));
     }
 
     @PostMapping("updateState")
     public Result updateState(User user) {
         boolean isExist = userService.updateUserState(user);
+        if (isExist) {
+            return ResultGenerator.getSuccessResult(ResultStatus.SUCCESS.getDesc());
+        }
+        return ResultGenerator.getFailResult(ResultStatus.SYSTEM_ERROR.getDesc());
+    }
+
+    @PostMapping("deleteUser")
+    public Result deleteUser(@RequestParam(required = true, value = "id") Integer id) {
+
+        boolean isExist = userService.deleteById(id);
         if (isExist) {
             return ResultGenerator.getSuccessResult(ResultStatus.SUCCESS.getDesc());
         }

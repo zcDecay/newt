@@ -96,4 +96,9 @@ public class UserVo extends User{
      * 用户手机号
      */
     private String userPhone;
+
+    /**
+     * 禁封/解封原因
+     */
+    private String cause;
 }

@@ -66,7 +66,7 @@ public class LoginController {
         }
 
         if (user.getState().equals(StateEnum.FORBIDDEN.getCode())){
-            return ResultGenerator.getFailResult(ResultStatus.FORBIDDEN.getDesc());
+            return ResultGenerator.getFailResult(ResultStatus.FORBIDDEN.getDesc() + "原因:" + user.getCause());
         }
 
         HashMap<String, String> reqMap = new HashMap<>();
@@ -77,7 +77,7 @@ public class LoginController {
             reqMap.put(key,value);
         }
         /*对象封装*/
-        UserVo newUser = BeanUtil.copyUserToUserVo(user);
+        UserVo newUser = BeanUtil.copyUserToUserVo(user,Boolean.TRUE);
         /*更新user表*/
         boolean isYesOrNo = userService.updateUser(newUser);
         /*判断是否成功*/

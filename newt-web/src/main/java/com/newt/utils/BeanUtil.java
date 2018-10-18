@@ -7,14 +7,22 @@ import com.newt.pojo.vo.UserVo;
  *  Bean转换
  */
 public class BeanUtil {
-    public static UserVo copyUserToUserVo (User user){
+    public static UserVo copyUserToUserVo (User user, Boolean isAlter){
         UserVo userVo = new UserVo();
         userVo.setId(user.getId());
-        userVo.setOldLoginIp(user.getLoginIp());
-        userVo.setOldLoginTime(user.getLoginTime());
-        userVo.setLoginIp(WebUtil.getIP());
         userVo.setLoginNum(user.getLoginNum() + 1);
-        userVo.setLoginTime(DateTimeUtil.getTimeStamp());
+        if (isAlter){
+            userVo.setLoginIp(WebUtil.getIP());
+            userVo.setOldLoginIp(user.getLoginIp());
+            userVo.setLoginTime(DateTimeUtil.nowTimeStamp());
+            userVo.setOldLoginTime(user.getLoginTime());
+
+        }else {
+            userVo.setLoginIp(user.getLoginIp());
+            userVo.setOldLoginIp(user.getOldLoginIp());
+            userVo.setLoginTime(user.getLoginTime());
+            userVo.setOldLoginTime(user.getOldLoginTime());
+        }
         userVo.setEmail(user.getEmail());
         userVo.setPickName(user.getPickName());
         userVo.setRoleId(user.getRoleId());
@@ -25,6 +33,7 @@ public class BeanUtil {
         userVo.setUserPhone(user.getUserPhone());
         userVo.setCreateTime(user.getCreateTime());
         userVo.setUpdateTime(user.getUpdateTime());
+        userVo.setCause(user.getCause());
 
         return userVo;
     }

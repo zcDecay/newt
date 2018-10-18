@@ -180,4 +180,23 @@ public class WebUtil {
         }
         return s;
     }
+    /**
+     * @Description: 获取排序
+     * @param:  * @param
+     * @return: java.lang.String
+     */
+    public static String getOrder(){
+        HttpServletRequest request = getRequest();
+        String column = request.getParameter("sortName");
+        String sort = request.getParameter("sortOrder");
+        if (StringUtils.isBlank(column)){
+            return "CREATE_TIME";
+        }
+        column = CamelCaseUtil.toUnderlineName(column);
+        if (StringUtils.isBlank(sort))  {
+            sort = "DESC";
+        }
+        return column + " " + sort;
+
+    }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 /**
-* Created by Mybatis Generator on 2018/10/12
+* Created by Mybatis Generator on 2018/10/18
 */
 public interface UserMenuMapper extends BaseMapper<UserMenu> {
     long countByExample(UserMenuExample example);

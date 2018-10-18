@@ -23,6 +23,7 @@
     <result column="FAVICON" jdbcType="VARCHAR" property="favicon" />
     <result column="USER_PHONE" jdbcType="VARCHAR" property="userPhone" />
     <result column="USER_PWD" jdbcType="VARCHAR" property="userPwd" />
+    <result column="CAUSE" jdbcType="VARCHAR" property="cause" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--
@@ -94,7 +95,7 @@
     -->
     ID, CREATE_TIME, EMAIL, LOGIN_IP, LOGIN_NUM, LOGIN_TIME, OLD_LOGIN_IP, OLD_LOGIN_TIME, 
     PICK_NAME, ROLE_ID, SALT, SIGNATURE, STATE, UPDATE_TIME, USER_ICON, FAVICON, USER_PHONE, 
-    USER_PWD
+    USER_PWD, CAUSE
   </sql>
   <select id="selectByExample" parameterType="com.newt.pojo.partial.UserExample" resultMap="BaseResultMap">
     <!--
@@ -147,15 +148,15 @@
       OLD_LOGIN_IP, OLD_LOGIN_TIME, PICK_NAME, 
       ROLE_ID, SALT, SIGNATURE, 
       STATE, UPDATE_TIME, USER_ICON, 
-      FAVICON, USER_PHONE, USER_PWD
-      )
+      FAVICON, USER_PHONE, USER_PWD, 
+      CAUSE)
     values (#{id,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{email,jdbcType=VARCHAR}, 
       #{loginIp,jdbcType=VARCHAR}, #{loginNum,jdbcType=INTEGER}, #{loginTime,jdbcType=TIMESTAMP}, 
       #{oldLoginIp,jdbcType=VARCHAR}, #{oldLoginTime,jdbcType=TIMESTAMP}, #{pickName,jdbcType=VARCHAR}, 
       #{roleId,jdbcType=INTEGER}, #{salt,jdbcType=VARCHAR}, #{signature,jdbcType=VARCHAR}, 
       #{state,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{userIcon,jdbcType=VARCHAR}, 
-      #{favicon,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}
-      )
+      #{favicon,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}, 
+      #{cause,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.newt.pojo.partial.User">
     <!--
@@ -217,6 +218,9 @@
       <if test="userPwd != null">
         USER_PWD,
       </if>
+      <if test="cause != null">
+        CAUSE,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -272,6 +276,9 @@
       </if>
       <if test="userPwd != null">
         #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="cause != null">
+        #{cause,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -344,6 +351,9 @@
       <if test="record.userPwd != null">
         USER_PWD = #{record.userPwd,jdbcType=VARCHAR},
       </if>
+      <if test="record.cause != null">
+        CAUSE = #{record.cause,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -371,7 +381,8 @@
       USER_ICON = #{record.userIcon,jdbcType=VARCHAR},
       FAVICON = #{record.favicon,jdbcType=VARCHAR},
       USER_PHONE = #{record.userPhone,jdbcType=VARCHAR},
-      USER_PWD = #{record.userPwd,jdbcType=VARCHAR}
+      USER_PWD = #{record.userPwd,jdbcType=VARCHAR},
+      CAUSE = #{record.cause,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -433,6 +444,9 @@
       <if test="userPwd != null">
         USER_PWD = #{userPwd,jdbcType=VARCHAR},
       </if>
+      <if test="cause != null">
+        CAUSE = #{cause,jdbcType=VARCHAR},
+      </if>
     </set>
     where ID = #{id,jdbcType=INTEGER}
   </update>
@@ -457,7 +471,8 @@
       USER_ICON = #{userIcon,jdbcType=VARCHAR},
       FAVICON = #{favicon,jdbcType=VARCHAR},
       USER_PHONE = #{userPhone,jdbcType=VARCHAR},
-      USER_PWD = #{userPwd,jdbcType=VARCHAR}
+      USER_PWD = #{userPwd,jdbcType=VARCHAR},
+      CAUSE = #{cause,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=INTEGER}
   </update>
   <insert id="insertList" parameterType="java.util.List">
@@ -470,7 +485,7 @@
       PICK_NAME, ROLE_ID, SALT, 
       SIGNATURE, STATE, UPDATE_TIME, 
       USER_ICON, FAVICON, USER_PHONE, 
-      USER_PWD)
+      USER_PWD, CAUSE)
     <foreach collection="records" index="index" item="record" separator=";">
     values (#{record.id,jdbcType=INTEGER}, #{record.createTime,jdbcType=TIMESTAMP}, #{record.email,jdbcType=VARCHAR}, 
       #{record.loginIp,jdbcType=VARCHAR}, #{record.loginNum,jdbcType=INTEGER}, #{record.loginTime,jdbcType=TIMESTAMP}, 
@@ -478,7 +493,7 @@
       #{record.pickName,jdbcType=VARCHAR}, #{record.roleId,jdbcType=INTEGER}, #{record.salt,jdbcType=VARCHAR}, 
       #{record.signature,jdbcType=VARCHAR}, #{record.state,jdbcType=INTEGER}, #{record.updateTime,jdbcType=TIMESTAMP}, 
       #{record.userIcon,jdbcType=VARCHAR}, #{record.favicon,jdbcType=VARCHAR}, #{record.userPhone,jdbcType=VARCHAR}, 
-      #{record.userPwd,jdbcType=VARCHAR})
+      #{record.userPwd,jdbcType=VARCHAR}, #{record.cause,jdbcType=VARCHAR})
     </foreach>
   </insert>
   <insert id="insertSelectiveList" parameterType="java.util.List">
@@ -541,6 +556,9 @@
       <if test="record.userPwd != null">
         USER_PWD,
       </if>
+      <if test="record.cause != null">
+        CAUSE,
+      </if>
     </trim>
     <foreach collection="records" index="index" item="record" separator=";">
       <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -597,6 +615,9 @@
         </if>
         <if test="record.userPwd != null">
           #{record.userPwd,jdbcType=VARCHAR},
+        </if>
+        <if test="record.cause != null">
+          #{record.cause,jdbcType=VARCHAR},
         </if>
       </trim>
     </foreach>

@@ -35,7 +35,7 @@ public class LogInfoService {
                 .operationFunction(function)
                 .operationMsg(msg)
                 .operationResult(OperationEnum.SUCCESS.getCode())
-                .operationTime(DateTimeUtil.getTimeStamp())
+                .operationTime(DateTimeUtil.nowTimeStamp())
                 .operationType(OperationTypeEnum.LOGIN.getCode())
                 .userId(user.getId())
                 .operationPickName(user.getPickName())

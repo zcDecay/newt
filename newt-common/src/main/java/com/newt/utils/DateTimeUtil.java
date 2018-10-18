@@ -1,7 +1,6 @@
 package com.newt.utils;
 
 import java.sql.Timestamp;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -13,73 +12,64 @@ import java.util.Date;
 public class DateTimeUtil {
 
     /**
-     * 转换格式 年月日时分秒
+     * @Description: 当前时
+     * @param: * @param
+     * @return: java.lang.String
      */
-    public static String getStringDate(Date d) {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
-        String date = formatter.format(d);
-        return date;
+    public static String getHour() {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateString = formatter.format(nowTimeStamp());
+        String hour;
+        hour = dateString.substring(11, 13);
+        return hour;
+    }
+
+
+    /**
+     * @Description: 当前分钟
+     * @param: * @param
+     * @return: java.lang.String
+     */
+    public static String getTime() {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateString = formatter.format(nowTimeStamp());
+        String min;
+        min = dateString.substring(14, 16);
+        return min;
     }
 
     /**
-     * 转换格式 年月日
+     * 得到二个日期间的间隔天数
      */
-    public static String getSimpleStringDate(Date d) {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
-        String date = formatter.format(d);
-        return date;
-    }
-
-    /**
-     * 获得当前年份的年和月
-     */
-    public static String getYearAndMonth(Date d) {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMM");
-        String date = formatter.format(d);
-        return date;
-    }
-
-    /**
-     * 年
-     */
-    public static String getYear(Date d) {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy");
-        String date = formatter.format(d);
-        return date;
-    }
-
-    /**
-     * 月
-     */
-    public static String getMonth(Date d) {
-        SimpleDateFormat formatter = new SimpleDateFormat("MM");
-        String date = formatter.format(d);
-        return date;
-    }
-
-    /**
-     * 日
-     */
-    public static String getDay(Date d) {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd");
-        String date = formatter.format(d);
-        return date;
-    }
-
-    public static String parseDate(String dateStr, String format) {
-        dateStr = dateStr.replace("Z", " UTC");
-        Date date = null;
+    public static String getTwoDay(String sj1, String sj2) {
+        SimpleDateFormat myFormatter = new SimpleDateFormat("yyyy-MM-dd");
+        long day = 0;
         try {
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS Z");
-            date = (Date) dateFormat.parse(dateStr);
-            SimpleDateFormat formatter = new SimpleDateFormat(format);
-            dateStr = formatter.format(date);
+            java.util.Date date = myFormatter.parse(sj1);
+            java.util.Date mydate = myFormatter.parse(sj2);
+            day = (date.getTime() - mydate.getTime()) / (24 * 60 * 60 * 1000);
+
         } catch (Exception e) {
+            return "";
+
         }
-        return dateStr;
+        return day + "";
+
     }
 
-    public  static Date getTimeStamp(){
-        return  new Timestamp(System.currentTimeMillis());
+    /**
+     * 提取一个月中的最后一天
+     *
+     * @param day
+     * @return
+     */
+    public static Date getLastDate(long day) {
+        long date_3_hm = nowTimeStamp().getTime() - 3600000 * 34 * day;
+        Date date_3_hm_date = new Date(date_3_hm);
+        return date_3_hm_date;
+    }
+
+    public static Date nowTimeStamp() {
+        return new Timestamp(System.currentTimeMillis());
     }
 }

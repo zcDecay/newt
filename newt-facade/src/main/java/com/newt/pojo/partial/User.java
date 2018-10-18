@@ -1,15 +1,17 @@
 package com.newt.pojo.partial;
 
-import java.io.Serializable;
-import java.util.Date;
-import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import java.io.Serializable;
+import java.util.Date;
+
 /**
-* Created by Mybatis Generator on 2018/10/12
+* Created by Mybatis Generator on 2018/10/18
 */
 @Data
 @Builder
@@ -124,6 +126,12 @@ public class User implements Serializable {
      */
     @Column(name = "USER_PWD")
     private String userPwd;
+
+    /**
+     * 禁封/解封原因
+     */
+    @Column(name = "CAUSE")
+    private String cause;
 
     private static final long serialVersionUID = 1L;
 }
