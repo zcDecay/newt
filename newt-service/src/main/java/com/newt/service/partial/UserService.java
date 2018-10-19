@@ -72,14 +72,14 @@ public class UserService {
         if (StringUtils.isNotEmpty(user.getUserPhone())) {
             criteria.andUserPhoneLike("%" + user.getUserPhone() + "%");
         }
-        if (null != user.getRoleId()) {
+        if (EmptyUtil.isNotEmpty(user.getRoleId())) {
             criteria.andRoleIdEqualTo(user.getRoleId());
         }
-        if (null != user.getCreateTime()) {
-            criteria.andCreateTimeLessThanOrEqualTo(DateFormatUtil.dateForDate(user.getCreateTime(), DateFormatUtil.YYYY_MM_DD));
+        if (EmptyUtil.isNotEmpty(user.getCreateTime())) {
+            criteria.andCreateTimeLessThanOrEqualTo(DateUtil.getDayEndTime(user.getCreateTime()));
         }
-        if (null != user.getLoginTime()) {
-            criteria.andLoginTimeLessThanOrEqualTo(DateFormatUtil.dateForDate(user.getCreateTime(), DateFormatUtil.YYYY_MM_DD));
+        if (EmptyUtil.isNotEmpty(user.getLoginTime())) {
+            criteria.andLoginTimeLessThanOrEqualTo(DateUtil.getDayEndTime(user.getLoginTime()));
         }
 
 

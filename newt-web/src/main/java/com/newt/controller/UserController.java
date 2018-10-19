@@ -12,7 +12,6 @@ import com.newt.service.partial.RouterService;
 import com.newt.service.partial.UserService;
 import com.newt.utils.BeanUtil;
 import com.newt.utils.EmptyUtil;
-import com.newt.utils.MapUtil;
 import com.newt.utils.WebUtil;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
@@ -88,8 +87,9 @@ public class UserController {
 
     @GetMapping("queryLevel")
     public Result queryLevel() {
-        Map<Integer, String> roleMap = RoleEnum.getMap();
-        return ResultGenerator.getSuccessResult(MapUtil.map2List(roleMap), MapUtil.map2Json(roleMap));
+        List<Map<String, String>> roleList = RoleEnum.getList();
+
+        return ResultGenerator.getSuccessResult(roleList, RoleEnum.getDescList());
     }
 
     @PostMapping("updateState")

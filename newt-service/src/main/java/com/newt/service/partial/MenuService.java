@@ -36,7 +36,7 @@ public class MenuService {
                 .ofNullable(menusMap.get(pid))
                 .orElseGet(() -> new ArrayList<UserMenu>())
                 .stream()
-                .filter(n -> n.getMenuPid() == pid).sorted(Comparator.comparing(UserMenu::getMenuOrder))
+                .filter(n -> Objects.equals(n.getMenuPid(), pid)).sorted(Comparator.comparing(UserMenu::getMenuOrder))
                 .map(n ->{
                         return MenuTree.builder()
                                 .entity(MenuEntity.builder()

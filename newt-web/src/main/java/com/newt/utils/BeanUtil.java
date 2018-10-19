@@ -25,7 +25,7 @@ public class BeanUtil {
         }
         userVo.setEmail(user.getEmail());
         userVo.setPickName(user.getPickName());
-        userVo.setRoleId(user.getRoleId());
+        userVo.setRoleId(user.getRoleId() - 1000);
         userVo.setSignature(user.getSignature());
         userVo.setState(user.getState());
         userVo.setUserIcon(user.getUserIcon());

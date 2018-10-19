@@ -36,7 +36,7 @@ public class RouterService {
                 .ofNullable(menusMap.get(pid))
                 .orElseGet(() -> new ArrayList<UserMenu>())
                 .stream()
-                .filter(n -> n.getMenuPid() == pid).sorted(Comparator.comparing(UserMenu::getMenuOrder))
+                .filter(n -> Objects.equals(n.getMenuPid(), pid)).sorted(Comparator.comparing(UserMenu::getMenuOrder))
                 .map(n -> {
                     return RouterTree.builder()
                             .name(n.getMenuName())

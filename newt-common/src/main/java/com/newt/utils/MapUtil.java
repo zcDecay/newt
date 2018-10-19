@@ -37,7 +37,7 @@ public class MapUtil {
         return map;
     }
 
-    public static List map2List(Map<Integer, String> map) {
+    public static List map2KeyVal(Map<Integer, String> map) {
         List list = new ArrayList();
         Iterator iter = map.entrySet().iterator(); // 获得map的Iterator
         while (iter.hasNext()) {
@@ -47,6 +47,17 @@ public class MapUtil {
             json.put("label", entry.getValue());
 
             list.add(json);
+        }
+        return list;
+    }
+
+    public static List map2List(Map<Integer, String> map) {
+        List list = new ArrayList();
+        Iterator iter = map.entrySet().iterator(); // 获得map的Iterator
+        while (iter.hasNext()) {
+            Map.Entry entry = (Map.Entry) iter.next();
+            list.add(entry.getKey());
+            list.add(entry.getValue());
         }
         return list;
     }
