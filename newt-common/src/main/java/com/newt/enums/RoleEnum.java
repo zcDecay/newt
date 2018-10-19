@@ -12,9 +12,9 @@ import java.util.*;
 @AllArgsConstructor
 public enum RoleEnum {
 
-    ONE(1001,1 , "凝气"),
+    ONE(1001, 1, "凝气"),
 
-    TWO(1002, 2 , "筑基"),
+    TWO(1002, 2, "筑基"),
 
     THREE(1003, 3, "结丹"),
 
@@ -53,7 +53,7 @@ public enum RoleEnum {
 
     /**
      * @Description: 根据状态获取详情
-     * @param:  * @param code 状态
+     * @param: * @param code 状态
      * @return: java.lang.String
      */
     public static String getDesc(Integer code) {
@@ -67,7 +67,7 @@ public enum RoleEnum {
 
     /**
      * @Description: 根据编号得到code
-     * @param:  * @param num 编号
+     * @param: * @param num 编号
      * @return: java.lang.Integer
      */
     public static Integer getCode(Integer num) {
@@ -78,9 +78,10 @@ public enum RoleEnum {
         }
         return null;
     }
+
     /**
      * @Description: 根据code得到编号
-     * @param:  * @param code
+     * @param: * @param code
      * @return: java.lang.Integer
      */
     public static Integer getNum(Integer code) {
@@ -94,31 +95,31 @@ public enum RoleEnum {
 
     /**
      * @Description: 获取map集合
-     * @param:  * @param
+     * @param: * @param
      * @return: java.util.Map<java.lang.String,java.lang.String>
      */
-    public static Map<Integer,String> getMap(){
-        Map<Integer,String> map = new LinkedHashMap<>();
-        for (RoleEnum state : RoleEnum.values()){
-            map.put(state.getNum(),state.getDesc());
+    public static Map<Integer, String> getMap() {
+        Map<Integer, String> map = new LinkedHashMap<>();
+        for (RoleEnum state : RoleEnum.values()) {
+            map.put(state.getNum(), state.getDesc());
         }
         return map;
     }
 
-    public static List<Map<String, String>> getList(){
+    public static List<Map<String, String>> getList() {
 
         ArrayList<Map<String, String>> list = new ArrayList<>(RoleEnum.values().length);
-        for (RoleEnum state : RoleEnum.values()){
-            Map<String,String> map = new LinkedHashMap<>();
-            map.put("value",state.getCode().toString());
-            map.put("label",state.getDesc());
+        for (RoleEnum state : RoleEnum.values()) {
+            Map<String, String> map = new LinkedHashMap<>();
+            map.put("value", state.getCode().toString());
+            map.put("label", state.getDesc());
             list.add(map);
         }
         return list;
     }
 
-    public static Object[] getDescList(){
+    public static Object[] getDescList() {
 
-        return Arrays.stream(RoleEnum.values()).map( element -> element.desc).toArray();
+        return Arrays.stream(RoleEnum.values()).map(element -> element.desc).toArray();
     }
 }

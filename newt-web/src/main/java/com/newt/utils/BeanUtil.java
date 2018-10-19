@@ -16,16 +16,17 @@ public class BeanUtil {
             userVo.setOldLoginIp(user.getLoginIp());
             userVo.setLoginTime(DateTimeUtil.nowTimeStamp());
             userVo.setOldLoginTime(user.getLoginTime());
+            userVo.setRoleId(user.getRoleId());
 
         }else {
             userVo.setLoginIp(user.getLoginIp());
             userVo.setOldLoginIp(user.getOldLoginIp());
             userVo.setLoginTime(user.getLoginTime());
             userVo.setOldLoginTime(user.getOldLoginTime());
+            userVo.setRoleId(user.getRoleId() - 1000);
         }
         userVo.setEmail(user.getEmail());
         userVo.setPickName(user.getPickName());
-        userVo.setRoleId(user.getRoleId() - 1000);
         userVo.setSignature(user.getSignature());
         userVo.setState(user.getState());
         userVo.setUserIcon(user.getUserIcon());
