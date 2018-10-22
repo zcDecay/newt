@@ -30,11 +30,14 @@ public class UserService {
     @Autowired
     private UserMapper userMapper;
 
-    @Value("${favicon}")
+    @Value("${user.favicon}")
     private String favicon;
 
-    @Value("${userIcon}")
+    @Value("${user.userIcon}")
     private String userIcon;
+
+    @Value("${user.defaultPwd}")
+    private String defaultPwd;
 
     /**
      * @Description: 查找用户
@@ -63,7 +66,7 @@ public class UserService {
      * @return: com.newt.pojo.partial.User
      */
     public List<User> findAllUser(int pageNum, int pageSize, String orderBy,
-                                      User user) throws ParseException {
+                                  User user) throws ParseException {
         UserExample example = new UserExample();
         UserExample.Criteria criteria = example.createCriteria();
         if (StringUtils.isNotEmpty(user.getPickName())) {
@@ -81,6 +84,9 @@ public class UserService {
         if (EmptyUtil.isNotEmpty(user.getLoginTime())) {
             criteria.andLoginTimeLessThanOrEqualTo(DateUtil.getDayEndTime(user.getLoginTime()));
         }
+        if (EmptyUtil.isNotEmpty(user.getId())) {
+            criteria.andIdEqualTo(user.getId());
+        }
 
 
         PageHelper.startPage(pageNum, pageSize, orderBy);
@@ -96,10 +102,10 @@ public class UserService {
     public Boolean selectUserByPickName(User user) {
         UserExample example = new UserExample();
         if (EmptyUtil.isEmpty(user)) {
-            return null;
+            return Boolean.FALSE;
         }
         if (EmptyUtil.isEmpty(user.getPickName())) {
-            return null;
+            return Boolean.FALSE;
         }
         example.createCriteria().andPickNameEqualTo(user.getPickName());
         List<User> users = userMapper.selectByExample(example);
@@ -115,7 +121,11 @@ public class UserService {
     public boolean saveUser(User user) {
         Date timeStamp = DateTimeUtil.nowTimeStamp();
         String salt = IDUtil.getRandomNumberByLength(NumberEnum.FIVE.getCode());
-        String userPwd = PasswordUtil.encryptPassword(salt, user.getUserPwd());
+        String userPwd = PasswordUtil.encryptPassword(salt,
+                EmptyUtil.isNotEmpty(user.getUserPwd())
+                        ?
+                        user.getUserPwd() : defaultPwd
+        );
 
         user = User.builder()
                 .createTime(timeStamp)
@@ -128,6 +138,7 @@ public class UserService {
                 .pickName(user.getPickName())
                 .email(user.getEmail())
                 .userPhone(user.getUserPhone())
+                .signature(EmptyUtil.isNotEmpty(user.getSignature()) ? user.getSignature() : null)
                 .build();
 
         return CommitUtil.isCommit(userMapper.insertSelective(user));

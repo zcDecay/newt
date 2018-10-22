@@ -11,6 +11,7 @@ import com.newt.service.partial.MenuService;
 import com.newt.service.partial.RouterService;
 import com.newt.service.partial.UserService;
 import com.newt.utils.BeanUtil;
+import com.newt.utils.DateUtil;
 import com.newt.utils.EmptyUtil;
 import com.newt.utils.WebUtil;
 import io.swagger.annotations.Api;
@@ -18,7 +19,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -71,7 +74,7 @@ public class UserController {
 
     @PostMapping("/queryUsers")
     public Result queryUsers(User user) throws ParseException {
-        List<UserVo> allUser = null;
+        List<UserVo> allUser = new ArrayList<>();
         UserVo currentUser = WebUtil.getUser();
 
         int pageNum = WebUtil.getPageNum();
@@ -80,19 +83,22 @@ public class UserController {
 
         if (currentUser.getRoleId().equals(RoleEnum.SEVEN.getCode())) {
             List<User> userList = userService.findAllUser(pageNum, pageSize, orderBy, user);
-            allUser = userList.stream().map(u -> BeanUtil.copyUserToUserVo(u, Boolean.FALSE)).collect(Collectors.toList());
+            allUser = userList
+                    .stream()
+                    .map(u -> BeanUtil.copyUserToUserVo(u, Boolean.FALSE))
+                    .collect(Collectors.toList());
         }
         return ResultGenerator.getSuccessResult(new PageInfo<>(allUser));
     }
 
-    @GetMapping("queryLevel")
+    @GetMapping("/queryLevel")
     public Result queryLevel() {
         List<Map<String, String>> roleList = RoleEnum.getList();
 
         return ResultGenerator.getSuccessResult(roleList, RoleEnum.getDescList());
     }
 
-    @PostMapping("updateState")
+    @PostMapping("/updateState")
     public Result updateState(User user) {
         boolean isExist = userService.updateUserState(user);
         if (isExist) {
@@ -101,7 +107,7 @@ public class UserController {
         return ResultGenerator.getFailResult(ResultStatus.SYSTEM_ERROR.getDesc());
     }
 
-    @PostMapping("deleteUser")
+    @PostMapping("/deleteUser")
     public Result deleteUser(@RequestParam(required = true, value = "id") Integer id) {
 
         boolean isExist = userService.deleteById(id);
@@ -109,6 +115,25 @@ public class UserController {
             return ResultGenerator.getSuccessResult(ResultStatus.SUCCESS.getDesc());
         }
         return ResultGenerator.getFailResult(ResultStatus.SYSTEM_ERROR.getDesc());
+    }
+
+    /**
+     * @param request
+     * @Description: 保存注册用户
+     * @param: * @param user
+     * @return: com.newt.pojo.Result
+     */
+    @PostMapping(value = {"/updateUser/admin"})
+    public Result update(User user, HttpServletRequest request) {
+        user.setUpdateTime(DateUtil.getNowTime());
+        user.setRoleId(RoleEnum.getCode(user.getRoleId()));
+        boolean isYesOrNo = userService.updateUser(user);
+
+        if (!isYesOrNo) {
+            return ResultGenerator.getFailResult(ResultStatus.SYSTEM_ERROR.getDesc());
+        }
+
+        return ResultGenerator.getSuccessResult();
     }
 
     @RequestMapping("/")

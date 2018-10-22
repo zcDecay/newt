@@ -1,5 +1,6 @@
 package com.newt.utils;
 
+import com.newt.enums.RoleEnum;
 import com.newt.pojo.partial.User;
 import com.newt.pojo.vo.UserVo;
 
@@ -23,7 +24,7 @@ public class BeanUtil {
             userVo.setOldLoginIp(user.getOldLoginIp());
             userVo.setLoginTime(user.getLoginTime());
             userVo.setOldLoginTime(user.getOldLoginTime());
-            userVo.setRoleId(user.getRoleId() - 1000);
+            userVo.setRoleId(RoleEnum.getNum(user.getRoleId()));
         }
         userVo.setEmail(user.getEmail());
         userVo.setPickName(user.getPickName());

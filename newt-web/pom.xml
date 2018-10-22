@@ -20,7 +20,23 @@
 
     <!-- Web模块相关依赖 -->
     <dependencies>
-
+        <!--SpringBoot-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <!--切换日志框架，需要排除原生的日志框架-->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        
         <!--引入module-->
         <!--<dependency>-->
             <!--<groupId>com.newt</groupId>-->
@@ -93,22 +109,6 @@
             <optional>true</optional>
         </dependency>
 
-        <!--SpringBoot-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <!--切换日志框架，需要排除原生的日志框架-->
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-logging</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-        </dependency>
         <dependency>
             <groupId>com.newt</groupId>
             <artifactId>newt-facade</artifactId>
@@ -120,6 +120,11 @@
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.aliyun.oss</groupId>
+            <artifactId>aliyun-sdk-oss</artifactId>
         </dependency>
     </dependencies>
 
