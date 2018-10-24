@@ -11,8 +11,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
-* Created by Mybatis Generator on 2018/10/18
-*/
+ * Created by Mybatis Generator on 2018/10/18
+ */
 @Data
 @Builder
 @NoArgsConstructor

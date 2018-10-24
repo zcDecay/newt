@@ -47,6 +47,11 @@ public class UserController {
     RouterService routerService;
 
 
+    /**
+     * @Description: 获取用户信息
+     * @param: * @param
+     * @return: com.newt.pojo.Result 用户
+     */
     @PostMapping("/getUserInfo")
     public Result getUserInfo() {
 
@@ -58,6 +63,11 @@ public class UserController {
         return ResultGenerator.getSuccessResult(user);
     }
 
+    /**
+     * @Description: 查询用户菜单
+     * @param: * @param
+     * @return: com.newt.pojo.Result 菜单
+     */
     @GetMapping("/queryMenus")
     public Result queryMenus() {
         UserVo user = WebUtil.getUser();
@@ -65,6 +75,11 @@ public class UserController {
         return ResultGenerator.getSuccessResult(menuService.selectMenusByRoleId(user.getRoleId()));
     }
 
+    /**
+     * @Description: 查询用户动态路由
+     * @param: * @param
+     * @return: com.newt.pojo.Result 路由
+     */
     @GetMapping("/queryRouter")
     public Result queryRouter() {
         UserVo user = WebUtil.getUser();
@@ -72,6 +87,11 @@ public class UserController {
         return ResultGenerator.getSuccessResult(routerService.selectRouterByRoleId(user.getRoleId()));
     }
 
+    /**
+     * @Description: 查询全部用户
+     * @param: * @param user
+     * @return: com.newt.pojo.Result list用户
+     */
     @PostMapping("/queryUsers")
     public Result queryUsers(User user) throws ParseException {
         List<UserVo> allUser = new ArrayList<>();
@@ -91,6 +111,11 @@ public class UserController {
         return ResultGenerator.getSuccessResult(new PageInfo<>(allUser));
     }
 
+    /**
+     * @Description: 获取等级
+     * @param: * @param
+     * @return: com.newt.pojo.Result 等级
+     */
     @GetMapping("/queryLevel")
     public Result queryLevel() {
         List<Map<String, String>> roleList = RoleEnum.getList();
@@ -98,6 +123,11 @@ public class UserController {
         return ResultGenerator.getSuccessResult(roleList, RoleEnum.getDescList());
     }
 
+    /**
+     * @Description: 更新用户状态
+     * @param: * @param user 用户
+     * @return: com.newt.pojo.Result 状态
+     */
     @PostMapping("/updateState")
     public Result updateState(User user) {
         boolean isExist = userService.updateUserState(user);
@@ -107,6 +137,11 @@ public class UserController {
         return ResultGenerator.getFailResult(ResultStatus.SYSTEM_ERROR.getDesc());
     }
 
+    /**
+     * @Description: 删除用户
+     * @param: * @param id 用户id
+     * @return: com.newt.pojo.Result 成功与否提示
+     */
     @PostMapping("/deleteUser")
     public Result deleteUser(@RequestParam(required = true, value = "id") Integer id) {
 
@@ -120,8 +155,8 @@ public class UserController {
     /**
      * @param request
      * @Description: 保存注册用户
-     * @param: * @param user
-     * @return: com.newt.pojo.Result
+     * @param: * @param user 注册用户
+     * @return: com.newt.pojo.Result  成功与否提示
      */
     @PostMapping(value = {"/updateUser/admin"})
     public Result update(User user, HttpServletRequest request) {

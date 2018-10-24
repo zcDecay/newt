@@ -100,7 +100,7 @@ oss:
     first:
       accessKeyId: LTAIqDT9s8bSbJHi # 授权ID
       accessKeySecret: fuPIueM0IkW52b3s8LNHZOhXyjnM2U # 授权秘钥
-      bucketName:  newt# 指定桶名
+      bucketName:  newt # 指定桶名
       endPoint: oss-cn-beijing.aliyuncs.com # 访问域名，也指文件存储在哪个区域节点，如华北1
       styleName:   # 指定访问文件样式，可对图片精选模糊压缩等改变<非必传项>。此值同样是在阿里云设置的
       prefix: admin

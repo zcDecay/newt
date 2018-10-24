@@ -2,7 +2,7 @@ package com.newt.controller;
 
 import com.newt.pojo.Result;
 import com.newt.pojo.ResultGenerator;
-import com.newt.utils.aliyun.OOSUtil;
+import com.newt.service.partial.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,18 +18,21 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileController {
 
     @Autowired
-    private OOSUtil oosUtil;
+    private FileService fileService;
 
 
     /**
-     * @Description: 文件上传
-     * @param:  * @param file
+     * @Description: 上传文件并删除原有链接
+     * @param: * @param file
      * @return: com.newt.pojo.Result
      */
-    @RequestMapping(value = "/upload")
-    public Result uploadFile(MultipartFile file) {
+    @RequestMapping(value = "/upload/update")
+    public Result uploadFile(MultipartFile file, String fileUrl) {
 
-        String upload = oosUtil.upload(file);
-        return ResultGenerator.getSuccessResult(upload);
+        String nowFileUrl = fileService.updateOOS(file, fileUrl);
+
+        return ResultGenerator.getSuccessResult(nowFileUrl);
     }
+
+
 }

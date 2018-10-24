@@ -1,6 +1,5 @@
 package com.newt.pojo.vo;
 
-import com.newt.pojo.partial.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +14,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserVo extends User{
+public class UserVo {
     /**
      * 用户id
      */
