@@ -7,7 +7,6 @@ import com.newt.pojo.Result;
 import com.newt.pojo.ResultGenerator;
 import com.newt.pojo.partial.User;
 import com.newt.pojo.vo.UserVo;
-import com.newt.service.partial.MenuService;
 import com.newt.service.partial.RouterService;
 import com.newt.service.partial.UserService;
 import com.newt.utils.BeanUtil;
@@ -40,8 +39,6 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @Autowired
-    MenuService menuService;
 
     @Autowired
     RouterService routerService;
@@ -63,17 +60,6 @@ public class UserController {
         return ResultGenerator.getSuccessResult(user);
     }
 
-    /**
-     * @Description: 查询用户菜单
-     * @param: * @param
-     * @return: com.newt.pojo.Result 菜单
-     */
-    @GetMapping("/queryMenus")
-    public Result queryMenus() {
-        UserVo user = WebUtil.getUser();
-
-        return ResultGenerator.getSuccessResult(menuService.selectMenusByRoleId(user.getRoleId()));
-    }
 
     /**
      * @Description: 查询用户动态路由

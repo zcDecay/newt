@@ -3,7 +3,9 @@ package com.newt.enums;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -86,6 +88,18 @@ public enum StateEnum {
             map.put(state.getCode(),state.getDesc());
         }
         return map;
+    }
+
+    public static List<Map<String, String>> getList() {
+
+        ArrayList<Map<String, String>> list = new ArrayList<>(StateEnum.values().length);
+        for (StateEnum state : StateEnum.values()) {
+            Map<String, String> map = new LinkedHashMap<>();
+            map.put("value", state.getCode().toString());
+            map.put("label", state.getDesc());
+            list.add(map);
+        }
+        return list;
     }
 
     public void setCode(Integer code) {
