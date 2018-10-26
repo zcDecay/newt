@@ -1,5 +1,7 @@
 package com.newt.utils;
 
+import com.newt.Constants.Constants;
+import com.newt.authorization.utils.JwtUtil;
 import com.newt.pojo.vo.UserVo;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -14,12 +16,6 @@ import javax.servlet.http.HttpSession;
  */
 public class WebUtil {
 
-    private static final int DEFAULT_PAGE_SIZE = 20;
-
-    private static final int MAX_PAGE_SIZE = 100;
-
-    public static final String TOKEN_KEY = "Newt-Token";
-
     /**
      * 获取当前用户信息
      *
@@ -27,7 +23,7 @@ public class WebUtil {
      */
     public static UserVo getUser() {
         UserVo info = new UserVo();
-        String token = getToken(TOKEN_KEY);
+        String token = getToken(Constants.TOKEN_KEY);
         if (StringUtils.isNotBlank(token)) {
             info = JwtUtil.parseToken(token);
         }
@@ -170,30 +166,31 @@ public class WebUtil {
      * @return
      */
     public static int getPageSize() {
-        int s = DEFAULT_PAGE_SIZE;
+        int s = Constants.DEFAULT_PAGE_SIZE;
         String pageSize = getRequest().getParameter("pageSize");
         if (StringUtils.isNotBlank(pageSize) && NumberUtils.isCreatable(pageSize)) {
             s = Integer.parseInt(pageSize);
-            if (s > MAX_PAGE_SIZE) {
-                s = MAX_PAGE_SIZE;
+            if (s > Constants.MAX_PAGE_SIZE) {
+                s = Constants.MAX_PAGE_SIZE;
             }
         }
         return s;
     }
+
     /**
      * @Description: 获取排序
-     * @param:  * @param
+     * @param: * @param
      * @return: java.lang.String
      */
-    public static String getOrder(){
+    public static String getOrder() {
         HttpServletRequest request = getRequest();
         String column = request.getParameter("sortName");
         String sort = request.getParameter("sortOrder");
-        if (StringUtils.isBlank(column)){
+        if (StringUtils.isBlank(column)) {
             return "CREATE_TIME";
         }
         column = CamelCaseUtil.toUnderlineName(column);
-        if (StringUtils.isBlank(sort))  {
+        if (StringUtils.isBlank(sort)) {
             sort = "DESC";
         }
         return column + " " + sort;

@@ -1,7 +1,6 @@
 package com.newt;
 
 import org.mybatis.generator.api.ShellRunner;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 

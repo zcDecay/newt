@@ -1,5 +1,6 @@
 package com.newt.controller;
 
+import com.newt.authorization.utils.JwtUtil;
 import com.newt.enums.ResultStatus;
 import com.newt.enums.StateEnum;
 import com.newt.pojo.Result;
@@ -8,7 +9,10 @@ import com.newt.pojo.partial.User;
 import com.newt.pojo.vo.UserVo;
 import com.newt.service.partial.LogInfoService;
 import com.newt.service.partial.UserService;
-import com.newt.utils.*;
+import com.newt.utils.BeanUtil;
+import com.newt.utils.EmptyUtil;
+import com.newt.utils.PasswordUtil;
+import com.newt.utils.WebUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;

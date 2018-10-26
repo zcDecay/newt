@@ -68,6 +68,9 @@
 
         <!--aliyun-->
         <aliyun.oos>2.8.3</aliyun.oos>
+
+        <!--shiro-->
+        <shiro.version>1.4.0-RC2</shiro.version>
     </properties>
 
 
@@ -275,6 +278,12 @@
                 <version>${aliyun.oos}</version>
             </dependency>
 
+            <!-- shiro secutity -->
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-spring-boot-starter</artifactId>
+                <version>${shiro.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

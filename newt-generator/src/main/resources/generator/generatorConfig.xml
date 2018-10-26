@@ -5,7 +5,10 @@
 
 <generatorConfiguration>
     <!-- 指定外部的属性元素 -->
-    <properties resource="application.yml"/>
+    <properties url="file:///D:/GitHubWorkSpace/GitRepository/newt/newt-generator/src/main/resources/application.yml"/>
+
+    <!--<properties resource="application.yml"/>-->
+
     <!-- 必须 指定生成一组对象的环境 -->
     <context id="Mysql" targetRuntime="MyBatis3" defaultModelType="flat">
         <!--分隔符 -->
@@ -52,18 +55,17 @@
         </javaTypeResolver>
 
 
-
         <!--生成Pojo类位置-->
-        <javaModelGenerator targetPackage="com.newt.pojo.partial" targetProject="D:/GitHubWorkSpace/GitRepository/newt/newt-facade/src/main/java">
+        <javaModelGenerator targetPackage="com.newt.pojo.partial" targetProject="${project}">
             <property name="trimStrings" value="true"/>
             <property name="enableSubPackages" value="false"/>
         </javaModelGenerator>
         <!--生成XML位置-->
-        <sqlMapGenerator targetPackage="com.newt.mapper.partial.xml" targetProject="D:/GitHubWorkSpace/GitRepository/newt/newt-facade/src/main/java">
+        <sqlMapGenerator targetPackage="com.newt.mapper.partial.xml" targetProject="${project}">
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
         <!--生成mapper类位置-->
-        <javaClientGenerator targetPackage="com.newt.mapper.partial" targetProject="D:/GitHubWorkSpace/GitRepository/newt/newt-facade/src/main/java"
+        <javaClientGenerator targetPackage="com.newt.mapper.partial" targetProject="${project}"
                              type="XMLMAPPER">
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
@@ -76,27 +78,19 @@
             <generatedKey column="USER_ID" sqlStatement="Mysql" identity="true"/>
         </table>
         <table tableName="log_info">
-            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
             <property name="useActualColumnNames" value="false"/>
-            <!-- MySQL数据库表主键 -->
             <generatedKey column="ID" sqlStatement="Mysql" identity="true"/>
         </table>
         <table tableName="user_home_link">
-            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
             <property name="useActualColumnNames" value="false"/>
-            <!-- MySQL数据库表主键 -->
             <generatedKey column="ID" sqlStatement="Mysql" identity="true"/>
         </table>
         <table tableName="user_role">
-            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
             <property name="useActualColumnNames" value="false"/>
-            <!-- MySQL数据库表主键 -->
             <generatedKey column="ID" sqlStatement="Mysql" identity="true"/>
         </table>
         <table tableName="user_menu">
-            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
             <property name="useActualColumnNames" value="false"/>
-            <!-- MySQL数据库表主键 -->
             <generatedKey column="ID" sqlStatement="Mysql" identity="true"/>
         </table>
     </context>

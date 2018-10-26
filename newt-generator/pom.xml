@@ -83,6 +83,16 @@
                     <overwrite>true</overwrite>
                     <verbose>true</verbose>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>Generate MyBatis Artifacts</id>
+                        <goals>
+                            <goal>
+                                generate
+                            </goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <dependencies>
                     <dependency>
                         <groupId>mysql</groupId>
@@ -94,6 +104,10 @@
                         <artifactId>mybatis-generator-core</artifactId>
                         <version>${mybatis.generator.version}</version>
                     </dependency>
+                    <!--<dependency>-->
+                        <!--<groupId>tk.mybatis</groupId>-->
+                        <!--<artifactId>mapper</artifactId>-->
+                    <!--</dependency>-->
                 </dependencies>
             </plugin>
         </plugins>

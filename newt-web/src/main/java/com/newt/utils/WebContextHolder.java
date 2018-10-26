@@ -38,8 +38,9 @@ public final class WebContextHolder {
     public static WebContextHolder getInstance() { // 对获取实例的方法进行同步
         if (INSTANCE == null) {
             synchronized (WebContextHolder.class) {
-                if (INSTANCE == null)
+                if (INSTANCE == null) {
                     INSTANCE = new WebContextHolder();
+                }
             }
         }
         return INSTANCE;
